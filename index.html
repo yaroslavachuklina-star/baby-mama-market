@@ -3,7 +3,6 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no,viewport-fit=cover">
-
 <title>Baby & Mama Market 🌸</title>
 
 <script src="https://telegram.org/js/telegram-web-app.js"></script>
@@ -11,20 +10,23 @@
 
 <style>
 :root{
-  --bg:#f8efeb;
+  --bg:#fbf1ee;
   --card:#fffaf8;
-  --pink:#b4647d;
-  --dark:#7e4058;
-  --text:#3b2930;
-  --muted:#9a7f88;
-  --line:#ead9df;
-  --danger:#bd5360;
+  --white:#fff;
+  --pink:#b85f7d;
+  --pink2:#8d425e;
+  --soft:#f3e2e4;
+  --text:#3b2830;
+  --muted:#9a8189;
+  --line:#ead9de;
+  --green:#608b72;
+  --red:#b94e5e;
+  --gold:#bd8d3e;
 }
 
-*{
-  box-sizing:border-box;
-  -webkit-tap-highlight-color:transparent;
-}
+*{box-sizing:border-box;-webkit-tap-highlight-color:transparent}
+
+html{scroll-behavior:smooth}
 
 body{
   margin:0;
@@ -34,110 +36,83 @@ body{
   padding-bottom:100px;
 }
 
-button,input,select,textarea{
-  font:inherit;
-}
-
-button{
-  border:0;
-  cursor:pointer;
-}
-
-/* HEADER */
+button,input,select,textarea{font:inherit}
+button{border:0;cursor:pointer}
 
 header{
   background:#fff;
-  padding:
-    calc(22px + env(safe-area-inset-top))
-    18px 22px;
+  padding:calc(20px + env(safe-area-inset-top)) 18px 20px;
   border-bottom:1px solid var(--line);
 }
 
-.brand{
-  display:flex;
-  align-items:center;
-  gap:10px;
-}
+.brand{display:flex;align-items:center;gap:11px}
+.logo{font-size:38px}
 
-.logo{
-  font-size:34px;
-}
+h1{margin:0;font-size:25px}
+.subtitle{color:var(--muted);margin-top:5px}
 
-h1{
-  margin:0;
-  font-size:26px;
-  line-height:1.1;
-}
-
-.subtitle{
-  margin-top:7px;
-  color:var(--muted);
-  font-size:15px;
-}
-
-/* MAIN */
-
-main{
-  padding:16px;
-}
+main{padding:15px}
 
 .search{
   width:100%;
   padding:16px;
-  border-radius:18px;
+  background:#fff;
   border:1px solid var(--line);
-  background:white;
+  border-radius:18px;
   outline:none;
   font-size:16px;
 }
 
-.add-btn{
+.add{
   width:100%;
-  margin-top:12px;
   padding:16px;
+  margin-top:11px;
   border-radius:18px;
-  background:var(--dark);
-  color:white;
-  font-weight:800;
+  background:var(--pink2);
+  color:#fff;
   font-size:16px;
+  font-weight:800;
+}
+
+.quickFilters{
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:9px;
+  margin-top:11px;
+}
+
+.quickFilters select{
+  width:100%;
+  padding:12px 9px;
+  border-radius:14px;
+  border:1px solid var(--line);
+  background:#fff;
+  color:var(--text);
 }
 
 .categories{
   display:flex;
-  gap:9px;
+  gap:8px;
   overflow-x:auto;
-  padding:14px 0;
+  padding:13px 0;
   scrollbar-width:none;
 }
-
-.categories::-webkit-scrollbar{
-  display:none;
-}
+.categories::-webkit-scrollbar{display:none}
 
 .categories button{
-  white-space:nowrap;
-  background:white;
-  color:#477fc8;
-  padding:10px 16px;
+  flex:none;
+  padding:10px 15px;
   border-radius:999px;
+  background:#fff;
   border:1px solid var(--line);
+  color:#557eb0;
 }
 
 .categories button.active{
   background:var(--pink);
-  color:white;
+  color:#fff;
   border-color:var(--pink);
 }
-
-.info{
-  grid-column:1/-1;
-  text-align:center;
-  color:var(--muted);
-  padding:55px 15px;
-  line-height:1.6;
-}
-
-/* GRID */
 
 .grid{
   display:grid;
@@ -146,93 +121,85 @@ main{
 }
 
 .card{
-  background:var(--card);
-  border-radius:20px;
   overflow:hidden;
+  border-radius:20px;
+  background:var(--card);
   border:1px solid var(--line);
-  box-shadow:0 5px 20px rgba(80,45,60,.06);
+  box-shadow:0 5px 18px rgba(80,40,55,.06);
 }
 
-.card-photo{
+.photoWrap{
+  position:relative;
+}
+
+.cardPhoto{
   display:block;
   width:100%;
   aspect-ratio:1/1;
   object-fit:cover;
-  background:#f1e2df;
+  background:#eee1df;
 }
 
-.card-content{
-  padding:11px;
-}
-
-.card-title{
-  font-size:15px;
+.countryBadge{
+  position:absolute;
+  left:8px;
+  top:8px;
+  padding:6px 9px;
+  border-radius:999px;
+  background:rgba(255,255,255,.9);
+  font-size:11px;
   font-weight:800;
+}
+
+.cardBody{padding:11px}
+
+.title{
+  font-size:15px;
+  font-weight:900;
   line-height:1.25;
-  min-height:38px;
+  min-height:37px;
 }
 
 .price{
-  color:var(--dark);
-  font-size:18px;
+  color:var(--pink2);
+  font-size:19px;
   font-weight:900;
   margin-top:5px;
 }
 
 .meta{
-  color:var(--muted);
   font-size:12px;
+  color:var(--muted);
   margin-top:5px;
-  line-height:1.35;
+  line-height:1.4;
 }
 
-.seller{
-  display:flex;
-  gap:8px;
-  align-items:center;
+.sellerMini{
   margin-top:9px;
   padding-top:9px;
   border-top:1px solid var(--line);
-}
-
-.avatar{
-  width:34px;
-  height:34px;
-  border-radius:50%;
-  object-fit:cover;
-  background:#ead8df;
-  display:grid;
-  place-items:center;
-  flex:none;
-}
-
-.seller-name{
   font-size:12px;
-  font-weight:800;
-  overflow:hidden;
-  text-overflow:ellipsis;
+  font-weight:700;
 }
 
-.rating{
-  color:#aa8034;
-  font-size:11px;
-  margin-top:2px;
+.empty{
+  grid-column:1/-1;
+  text-align:center;
+  padding:55px 15px;
+  color:var(--muted);
+  line-height:1.6;
 }
-
-/* BOTTOM NAV */
 
 .bottom{
   position:fixed;
-  left:0;
-  right:0;
-  bottom:0;
-  min-height:78px;
-  padding-bottom:env(safe-area-inset-bottom);
+  z-index:30;
+  left:0;right:0;bottom:0;
   background:#fff;
   border-top:1px solid var(--line);
   display:grid;
   grid-template-columns:repeat(3,1fr);
-  z-index:20;
+  min-height:78px;
+  padding-bottom:env(safe-area-inset-bottom);
 }
 
 .bottom button{
@@ -240,273 +207,193 @@ main{
   color:var(--muted);
   font-size:12px;
 }
-
-.bottom span{
-  display:block;
-  font-size:23px;
-  margin-bottom:3px;
-}
-
-/* MODAL */
+.bottom span{display:block;font-size:23px;margin-bottom:3px}
 
 .modal{
   display:none;
   position:fixed;
-  inset:0;
   z-index:100;
-  background:rgba(35,20,27,.46);
+  inset:0;
+  background:rgba(38,22,28,.47);
   align-items:flex-end;
 }
 
-.modal.show{
-  display:flex;
-}
+.modal.show{display:flex}
 
 .sheet{
   width:100%;
   max-height:94vh;
-  overflow-y:auto;
+  overflow:auto;
   background:#fffaf8;
-  border-radius:26px 26px 0 0;
-  padding:20px 16px calc(28px + env(safe-area-inset-bottom));
+  border-radius:27px 27px 0 0;
+  padding:20px 16px calc(30px + env(safe-area-inset-bottom));
   position:relative;
 }
 
 .close{
   position:absolute;
-  top:12px;
   right:14px;
+  top:12px;
   width:40px;
   height:40px;
   border-radius:50%;
   background:#f0e1df;
+  font-size:25px;
   color:var(--text);
-  font-size:26px;
 }
 
-.sheet h2{
-  margin:3px 50px 20px 0;
-}
+.sheet h2{margin:4px 50px 20px 0}
 
-/* FORM */
-
-.field{
-  margin:13px 0;
-}
+.field{margin:13px 0}
 
 .field label{
   display:block;
-  margin-bottom:6px;
-  font-size:13px;
   font-weight:800;
+  margin-bottom:7px;
+  font-size:14px;
 }
 
 .field input,
 .field select,
 .field textarea{
   width:100%;
-  border:1px solid var(--line);
-  background:#fff;
-  border-radius:15px;
   padding:14px;
-  outline:none;
+  border:1px solid var(--line);
+  border-radius:15px;
+  background:#fff;
   color:var(--text);
+  outline:none;
 }
 
 .field textarea{
-  min-height:100px;
+  min-height:105px;
   resize:vertical;
 }
 
-.file-input{
-  border:1px dashed #cfa9b5 !important;
+.row{
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:10px;
+}
+
+.file{
+  border:1px dashed #cca4b1 !important;
 }
 
 .preview img{
   width:100%;
   max-height:300px;
   object-fit:cover;
-  border-radius:16px;
+  border-radius:17px;
   margin-top:10px;
 }
 
-.form-actions{
+.actions{
   display:grid;
   grid-template-columns:1fr 1.5fr;
   gap:10px;
   margin-top:18px;
 }
 
-.cancel,
-.publish,
-.primary,
-.secondary,
-.danger{
+.secondary,.primary,.danger{
   padding:14px;
   border-radius:15px;
   font-weight:800;
 }
 
-.cancel,
-.secondary{
-  background:#efe1df;
-  color:var(--text);
-}
+.secondary{background:#efe1df;color:var(--text)}
+.primary{background:var(--pink2);color:#fff}
+.danger{background:#fde4e7;color:var(--red)}
 
-.publish,
-.primary{
-  background:var(--dark);
-  color:#fff;
-}
+.full{width:100%;margin-top:10px}
 
-.danger{
-  background:#fde5e7;
-  color:#a63f4b;
-}
-
-/* DETAILS */
-
-.detail-photo{
-  display:block;
+.detailPhoto{
   width:100%;
-  max-height:430px;
+  max-height:440px;
   object-fit:cover;
-  border-radius:19px;
+  border-radius:20px;
 }
 
-.detail-title{
+.detailTitle{
   font-size:24px;
   font-weight:900;
-  margin:14px 0 3px;
+  margin-top:14px;
 }
 
-.detail-row{
+.detailLine{
   padding:10px 0;
   border-bottom:1px solid var(--line);
+  line-height:1.45;
 }
 
-.status{
-  display:inline-block;
-  margin-top:7px;
-  padding:6px 10px;
-  border-radius:999px;
-  background:#eee1e5;
-  color:var(--dark);
-  font-size:12px;
-  font-weight:800;
-}
-
-/* PROFILE */
-
-.profile-head{
-  display:flex;
-  gap:12px;
-  align-items:center;
-  margin:6px 0 18px;
-}
-
-.profile-avatar{
-  width:68px;
-  height:68px;
-  border-radius:50%;
-  object-fit:cover;
-  background:#ead8df;
-  display:grid;
-  place-items:center;
-  font-size:30px;
-}
-
-.profile-name{
-  font-size:20px;
-  font-weight:900;
-}
-
-.profile-user{
-  color:var(--muted);
-  margin-top:3px;
-  font-size:13px;
-}
-
-.profile-rating{
-  margin-top:5px;
-  color:#9b742d;
-}
-
-.rating-box{
+.sellerBox{
   background:#fff;
   border:1px solid var(--line);
   border-radius:18px;
   padding:14px;
-  margin:12px 0 18px;
+  margin-top:14px;
 }
 
-.stars{
+.profileHead{
   display:flex;
-  gap:4px;
-  margin:8px 0;
+  gap:12px;
+  align-items:center;
+  margin-bottom:18px;
 }
 
-.star{
-  background:none;
-  color:#d9c8cc;
-  font-size:30px;
-  padding:2px;
-}
-
-.star.on{
-  color:#d3a13d;
-}
-
-.status-actions{
+.avatar{
+  width:64px;
+  height:64px;
+  border-radius:50%;
+  background:var(--soft);
   display:grid;
-  grid-template-columns:1fr 1fr;
-  gap:8px;
-  margin-top:10px;
+  place-items:center;
+  font-size:28px;
+  object-fit:cover;
 }
 
-.full{
-  width:100%;
-  margin-top:10px;
-}
+.profileName{font-size:20px;font-weight:900}
+.username{color:var(--muted);margin-top:3px}
+.rating{color:var(--gold);margin-top:4px;font-size:13px}
 
-/* TOAST */
+.status{
+  display:inline-block;
+  padding:5px 9px;
+  margin-top:6px;
+  border-radius:999px;
+  background:#eee0e5;
+  color:var(--pink2);
+  font-size:11px;
+  font-weight:800;
+}
 
 .toast{
   display:none;
   position:fixed;
-  left:15px;
-  right:15px;
+  z-index:500;
+  left:16px;right:16px;
   bottom:100px;
-  z-index:300;
-  background:#38252d;
-  color:white;
-  border-radius:15px;
+  background:#3c252e;
+  color:#fff;
   padding:14px;
+  border-radius:15px;
   text-align:center;
-  font-size:14px;
 }
+.toast.show{display:block}
 
-.toast.show{
-  display:block;
+.starBox{display:flex;gap:3px;margin:10px 0}
+.star{
+  background:none;
+  padding:2px;
+  font-size:30px;
+  color:#d9c7cd;
 }
+.star.on{color:#d1a03f}
 
-.error-box{
-  grid-column:1/-1;
-  background:#fff;
-  border:1px solid #efcdd2;
-  border-radius:18px;
-  padding:18px;
-  text-align:center;
-  line-height:1.5;
-}
-
-.retry{
-  margin-top:12px;
-  padding:11px 18px;
-  border-radius:13px;
-  background:var(--dark);
-  color:white;
-  font-weight:800;
+@media(min-width:700px){
+  main{max-width:800px;margin:auto}
+  header>div{max-width:800px;margin:auto}
+  .sheet{max-width:700px;margin:auto}
 }
 </style>
 </head>
@@ -514,87 +401,88 @@ main{
 <body>
 
 <header>
-  <div class="brand">
-    <div class="logo">🌸</div>
-    <div>
-      <h1>Baby & Mama Market</h1>
-      <div class="subtitle">Речі для малюків від мам 💕</div>
-    </div>
+<div class="brand">
+  <div class="logo">🌸</div>
+  <div>
+    <h1>Baby & Mama Market</h1>
+    <div class="subtitle">Речі для малюків від мам 💕</div>
   </div>
+</div>
 </header>
 
 <main>
 
-<input
-  id="search"
-  class="search"
-  placeholder="🔎 Пошук речей, розміру або міста"
->
+<input id="search" class="search"
+placeholder="🔎 Пошук речі, розміру або міста">
 
-<button class="add-btn" onclick="openSell()">
-  ➕ Додати оголошення
-</button>
+<button class="add" onclick="openSell()">＋ Додати оголошення</button>
+
+<div class="quickFilters">
+<select id="countryFilter" onchange="render()">
+<option value="">🌍 Усі країни</option>
+<option value="Україна">🇺🇦 Україна</option>
+<option value="Польща">🇵🇱 Польща</option>
+</select>
+
+<select id="sort" onchange="render()">
+<option value="new">Нові спочатку</option>
+<option value="cheap">Ціна ↑</option>
+<option value="expensive">Ціна ↓</option>
+</select>
+</div>
 
 <div class="categories">
-  <button class="active" onclick="setCategory('Усі',this)">Усі</button>
-  <button onclick="setCategory('Одяг',this)">Одяг</button>
-  <button onclick="setCategory('Взуття',this)">Взуття</button>
-  <button onclick="setCategory('Іграшки',this)">Іграшки</button>
-  <button onclick="setCategory('Аксесуари',this)">Аксесуари</button>
-  <button onclick="setCategory('Інше',this)">Інше</button>
+<button class="active" onclick="category('Усі',this)">Усі</button>
+<button onclick="category('Одяг',this)">Одяг</button>
+<button onclick="category('Взуття',this)">Взуття</button>
+<button onclick="category('Іграшки',this)">Іграшки</button>
+<button onclick="category('Аксесуари',this)">Аксесуари</button>
+<button onclick="category('Для мами',this)">Для мами</button>
+<button onclick="category('Інше',this)">Інше</button>
 </div>
 
 <div id="products" class="grid">
-  <div class="info">Підключення до маркету 🌸</div>
+<div class="empty">Підключення 🌸</div>
 </div>
 
 </main>
 
 <nav class="bottom">
-  <button onclick="home()">
-    <span>🏠</span>
-    Головна
-  </button>
-
-  <button onclick="openSell()">
-    <span>➕</span>
-    Продати
-  </button>
-
-  <button onclick="myProfile()">
-    <span>👤</span>
-    Мій профіль
-  </button>
+<button onclick="home()"><span>🏠</span>Головна</button>
+<button onclick="openSell()"><span>➕</span>Продати</button>
+<button onclick="myProfile()"><span>👤</span>Мій профіль</button>
 </nav>
 
-<!-- SELL MODAL -->
+<!-- SELL -->
 
 <div id="sellModal" class="modal">
 <div class="sheet">
 
 <button class="close" onclick="closeSell()">×</button>
-
 <h2>Нове оголошення 🌸</h2>
 
 <div class="field">
-<label>Назва речі *</label>
-<input id="title" placeholder="Наприклад: Боді Zara">
+<label>Назва *</label>
+<input id="title" placeholder="Наприклад: Сукня Zara">
 </div>
 
+<div class="row">
 <div class="field">
 <label>Категорія</label>
-<select id="category">
+<select id="formCategory">
 <option>Одяг</option>
 <option>Взуття</option>
 <option>Іграшки</option>
 <option>Аксесуари</option>
+<option>Для мами</option>
 <option>Інше</option>
 </select>
 </div>
 
 <div class="field">
 <label>Розмір</label>
-<input id="size" placeholder="Наприклад: 74">
+<input id="size" placeholder="74">
+</div>
 </div>
 
 <div class="field">
@@ -609,57 +497,60 @@ main{
 </div>
 
 <div class="field">
-<label>Ціна, грн *</label>
+<label>Ціна *</label>
 <input id="price" type="number" min="0" inputmode="decimal" placeholder="300">
 </div>
 
 <div class="field">
-<label>Місто</label>
-<input id="city" placeholder="Київ">
+<label>Країна *</label>
+<select id="country" onchange="countryChanged()">
+<option value="">Оберіть країну</option>
+<option value="Україна">🇺🇦 Україна</option>
+<option value="Польща">🇵🇱 Польща</option>
+</select>
+</div>
+
+<div class="field">
+<label>Місто *</label>
+<select id="citySelect" onchange="cityChanged()" disabled>
+<option value="">Спочатку оберіть країну</option>
+</select>
+</div>
+
+<div id="customCityBox" class="field" style="display:none">
+<label>Вкажіть своє місто</label>
+<input id="customCity" placeholder="Назва міста">
 </div>
 
 <div class="field">
 <label>Telegram продавця *</label>
-<input
-  id="sellerTelegram"
-  type="text"
-  placeholder="@username"
-  autocomplete="off"
-  autocapitalize="none"
->
+<input id="telegram" placeholder="@username"
+autocomplete="off" autocapitalize="none">
 </div>
 
 <div class="field">
 <label>📸 Фото з галереї</label>
-<input
-  id="photo"
-  class="file-input"
-  type="file"
-  accept="image/jpeg,image/png,image/webp,image/heic,image/heif"
-  onchange="previewPhoto(event)"
->
+<input id="photo" class="file" type="file"
+accept="image/jpeg,image/png,image/webp,image/heic,image/heif"
+onchange="preview(event)">
 <div id="preview" class="preview"></div>
 </div>
 
 <div class="field">
 <label>Опис</label>
-<textarea
-  id="description"
-  placeholder="Опиши стан речі, заміри, нюанси..."
-></textarea>
+<textarea id="description"
+placeholder="Стан речі, заміри, нюанси, доставка..."></textarea>
 </div>
 
-<div class="form-actions">
-<button class="cancel" onclick="closeSell()">Скасувати</button>
-<button id="publishBtn" class="publish" onclick="publishListing()">
-Опублікувати
-</button>
+<div class="actions">
+<button class="secondary" onclick="closeSell()">Скасувати</button>
+<button id="publish" class="primary" onclick="publish()">Опублікувати</button>
 </div>
 
 </div>
 </div>
 
-<!-- DETAIL -->
+<!-- DETAILS -->
 
 <div id="detailModal" class="modal">
 <div id="detail" class="sheet"></div>
@@ -674,1288 +565,5 @@ main{
 <div id="toast" class="toast"></div>
 
 <script>
-
-/* ==============================
-   SUPABASE
-============================== */
-
-const SUPABASE_URL =
-"https://kotjqloictmzhqcresaq.supabase.co";
-
-const SUPABASE_KEY =
-"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImtvdGpxbG9pY3RtemhxY3Jlc2FxIiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODk5OTY3NTYsImV4cCI6MjEwNTU3Mjc1Nn0.EBHCCl9S3Q4HmCL5VkxV9aRscS0FI2wodDjCPeXskeI";
-
-const db = window.supabase.createClient(
-  SUPABASE_URL,
-  SUPABASE_KEY,
-  {
-    auth:{
-      persistSession:true,
-      autoRefreshToken:true,
-      detectSessionInUrl:false
-    }
-  }
-);
-
-/* ==============================
-   TELEGRAM
-============================== */
-
-const tg = window.Telegram?.WebApp || null;
-
-try{
-  if(tg){
-    tg.ready();
-    tg.expand();
-  }
-}catch(e){
-  console.warn("Telegram:",e);
-}
-
-/* ==============================
-   STATE
-============================== */
-
-let me = null;
-let categoryFilter = "Усі";
-let selectedRating = 5;
-
-const FALLBACK =
-"data:image/svg+xml;charset=UTF-8," +
-encodeURIComponent(`
-<svg xmlns="http://www.w3.org/2000/svg" width="600" height="600">
-<rect width="100%" height="100%" fill="#f1e3df"/>
-<text x="50%" y="47%" text-anchor="middle" font-size="70">🌸</text>
-<text x="50%" y="59%" text-anchor="middle"
-font-family="Arial" font-size="30" fill="#7e4058">
-Baby &amp; Mama
-</text>
-</svg>
-`);
-
-/* ==============================
-   HELPERS
-============================== */
-
-function html(v){
-  return String(v ?? "")
-    .replaceAll("&","&amp;")
-    .replaceAll("<","&lt;")
-    .replaceAll(">","&gt;")
-    .replaceAll('"',"&quot;")
-    .replaceAll("'","&#039;");
-}
-
-function toast(message){
-  const box = document.getElementById("toast");
-  box.textContent = message;
-  box.classList.add("show");
-
-  clearTimeout(window.toastTimer);
-
-  window.toastTimer = setTimeout(()=>{
-    box.classList.remove("show");
-  },2800);
-}
-
-function telegramUser(){
-  try{
-    return tg?.initDataUnsafe?.user || null;
-  }catch{
-    return null;
-  }
-}
-
-function telegramName(){
-  const u = telegramUser();
-
-  if(!u) return "Мама";
-
-  const full =
-    [u.first_name,u.last_name]
-    .filter(Boolean)
-    .join(" ")
-    .trim();
-
-  return full || (u.username ? "@"+u.username : "Мама");
-}
-
-function username(){
-  const u = telegramUser();
-  return u?.username ? "@"+u.username : "";
-}
-
-function stars(value){
-  const n = Math.max(0,Math.min(5,Math.round(Number(value)||0)));
-
-  if(!n) return "☆ ☆ ☆ ☆ ☆";
-
-  return "★".repeat(n) + "☆".repeat(5-n);
-}
-
-function money(value){
-  return Number(value || 0).toLocaleString("uk-UA");
-}
-
-function showError(message){
-  document.getElementById("products").innerHTML = `
-    <div class="error-box">
-      🌸<br>
-      <b>Не вдалося підключити маркет</b>
-      <br><br>
-      ${html(message)}
-      <br>
-      <button class="retry" onclick="start()">Спробувати ще раз</button>
-    </div>
-  `;
-}
-
-/* ==============================
-   START
-============================== */
-
-async function start(){
-
-  const box = document.getElementById("products");
-
-  box.innerHTML =
-    `<div class="info">Підключення до маркету 🌸</div>`;
-
-  try{
-
-    /*
-      Даємо запиту максимум 12 секунд.
-      Сторінка більше НЕ може вічно висіти
-      на "Завантаження".
-    */
-
-    const timeout = new Promise((_,reject)=>{
-      setTimeout(
-        ()=>reject(new Error("Supabase не відповів протягом 12 секунд.")),
-        12000
-      );
-    });
-
-    await Promise.race([
-      connectUser(),
-      timeout
-    ]);
-
-    await saveProfile();
-    await renderProducts();
-
-  }catch(error){
-
-    console.error("START ERROR:",error);
-
-    showError(
-      error?.message ||
-      "Невідома помилка підключення."
-    );
-  }
-}
-
-/* ==============================
-   AUTH
-============================== */
-
-async function connectUser(){
-
-  const {
-    data:{session},
-    error:sessionError
-  } = await db.auth.getSession();
-
-  if(sessionError){
-    throw sessionError;
-  }
-
-  if(session?.user){
-    me = session.user;
-    return;
-  }
-
-  const {
-    data,
-    error
-  } = await db.auth.signInAnonymously();
-
-  if(error){
-    throw new Error(
-      "Не вдалося створити користувача: " + error.message
-    );
-  }
-
-  if(!data?.user){
-    throw new Error("Supabase не повернув користувача.");
-  }
-
-  me = data.user;
-}
-
-/* ==============================
-   PROFILE
-============================== */
-
-async function saveProfile(){
-
-  if(!me) throw new Error("Немає активного користувача.");
-
-  const u = telegramUser();
-
-  const profile = {
-    id:me.id,
-    username:username(),
-    display_name:telegramName(),
-    avatar_url:u?.photo_url || null
-  };
-
-  const {error} =
-    await db
-      .from("profiles")
-      .upsert(profile);
-
-  if(error){
-    throw new Error(
-      "Помилка профілю: " + error.message
-    );
-  }
-}
-
-/* ==============================
-   RATINGS
-============================== */
-
-async function ratingFor(sellerId){
-
-  const {data,error} =
-    await db
-      .from("ratings")
-      .select("rating")
-      .eq("seller_id",sellerId);
-
-  if(error){
-    console.warn("Rating:",error);
-    return {avg:0,count:0};
-  }
-
-  const nums =
-    (data || [])
-    .map(x=>Number(x.rating))
-    .filter(Boolean);
-
-  if(!nums.length){
-    return {avg:0,count:0};
-  }
-
-  return {
-    avg:nums.reduce((a,b)=>a+b,0) / nums.length,
-    count:nums.length
-  };
-}
-
-/* ==============================
-   PRODUCTS
-============================== */
-
-async function getProducts(){
-
-  let query =
-    db
-      .from("listings")
-      .select(`
-        *,
-        profiles (
-          id,
-          username,
-          display_name,
-          avatar_url
-        )
-      `)
-      .eq("status","active")
-      .order("created_at",{ascending:false});
-
-  if(categoryFilter !== "Усі"){
-    query = query.eq("category",categoryFilter);
-  }
-
-  const {data,error} = await query;
-
-  if(error){
-    throw new Error(
-      "Помилка оголошень: " + error.message
-    );
-  }
-
-  const search =
-    document
-      .getElementById("search")
-      .value
-      .trim()
-      .toLowerCase();
-
-  if(!search) return data || [];
-
-  return (data || []).filter(p=>{
-
-    const all = `
-      ${p.title || ""}
-      ${p.category || ""}
-      ${p.size || ""}
-      ${p.city || ""}
-      ${p.condition || ""}
-      ${p.description || ""}
-    `.toLowerCase();
-
-    return all.includes(search);
-  });
-}
-
-async function renderProducts(){
-
-  const box = document.getElementById("products");
-
-  box.innerHTML =
-    `<div class="info">Завантажую оголошення 🌸</div>`;
-
-  try{
-
-    const products = await getProducts();
-
-    if(!products.length){
-
-      box.innerHTML = `
-        <div class="info">
-          🌸<br>
-          <b>Поки немає оголошень</b>
-          <br><br>
-          Додай першу річ у Baby & Mama Market 💕
-        </div>
-      `;
-
-      return;
-    }
-
-    const ratings = {};
-
-    await Promise.all(
-      [...new Set(products.map(p=>p.seller_id))]
-      .map(async id=>{
-        ratings[id] = await ratingFor(id);
-      })
-    );
-
-    box.innerHTML =
-      products.map(p=>{
-
-        const seller = p.profiles || {};
-        const r = ratings[p.seller_id] || {avg:0,count:0};
-
-        const avatar =
-          seller.avatar_url
-          ? `<img class="avatar" src="${html(seller.avatar_url)}">`
-          : `<div class="avatar">👩🏻</div>`;
-
-        return `
-          <article class="card"
-            onclick="openDetail('${p.id}')">
-
-            <img
-              class="card-photo"
-              src="${html(p.photo_url || FALLBACK)}"
-              onerror="this.onerror=null;this.src=FALLBACK"
-            >
-
-            <div class="card-content">
-
-              <div class="card-title">
-                ${html(p.title)}
-              </div>
-
-              <div class="price">
-                ${money(p.price)} грн
-              </div>
-
-              <div class="meta">
-                📏 ${html(p.size || "Не вказано")}
-                · 📍 ${html(p.city || "Не вказано")}
-              </div>
-
-              <div class="meta">
-                ✨ ${html(p.condition || "")}
-              </div>
-
-              <div
-                class="seller"
-                onclick="event.stopPropagation();openProfile('${p.seller_id}')"
-              >
-                ${avatar}
-
-                <div>
-                  <div class="seller-name">
-                    ${html(
-                      seller.display_name ||
-                      seller.username ||
-                      "Продавець"
-                    )}
-                  </div>
-
-                  <div class="rating">
-                    ${
-                      r.avg
-                      ? `${stars(r.avg)} ${r.avg.toFixed(1)} (${r.count})`
-                      : "☆ Ще немає оцінок"
-                    }
-                  </div>
-                </div>
-              </div>
-
-            </div>
-          </article>
-        `;
-      }).join("");
-
-  }catch(error){
-
-    console.error(error);
-
-    showError(error.message);
-  }
-}
-
-/* ==============================
-   FILTERS
-============================== */
-
-function setCategory(category,button){
-
-  categoryFilter = category;
-
-  document
-    .querySelectorAll(".categories button")
-    .forEach(b=>b.classList.remove("active"));
-
-  button.classList.add("active");
-
-  renderProducts();
-}
-
-let searchTimer;
-
-document
-  .getElementById("search")
-  .addEventListener("input",()=>{
-
-    clearTimeout(searchTimer);
-
-    searchTimer =
-      setTimeout(renderProducts,250);
-  });
-
-/* ==============================
-   SELL FORM
-============================== */
-
-function openSell(){
-
-  if(!me){
-    toast("Профіль ще підключається 🌸");
-    return;
-  }
-
-  document
-    .getElementById("sellModal")
-    .classList.add("show");
-}
-
-function closeSell(){
-
-  document
-    .getElementById("sellModal")
-    .classList.remove("show");
-}
-
-function previewPhoto(event){
-
-  const file = event.target.files?.[0];
-  const preview = document.getElementById("preview");
-
-  preview.innerHTML = "";
-
-  if(!file) return;
-
-  const url = URL.createObjectURL(file);
-
-  preview.innerHTML =
-    `<img src="${url}" alt="Попередній перегляд">`;
-}
-
-function safeExtension(file){
-
-  const name =
-    String(file.name || "")
-    .toLowerCase();
-
-  if(name.endsWith(".png")) return "png";
-  if(name.endsWith(".webp")) return "webp";
-
-  /*
-    iPhone може дати HEIC.
-    Supabase збереже файл, але браузери
-    не завжди показують HEIC.
-  */
-
-  if(name.endsWith(".heic")) return "heic";
-  if(name.endsWith(".heif")) return "heif";
-
-  return "jpg";
-}
-
-async function uploadPhoto(file){
-
-  if(!file) return null;
-
-  if(file.size > 10 * 1024 * 1024){
-    throw new Error(
-      "Фото завелике. Обери фото до 10 МБ."
-    );
-  }
-
-  const ext = safeExtension(file);
-
-  const unique =
-    (crypto.randomUUID
-      ? crypto.randomUUID()
-      : Date.now() + "-" + Math.random().toString(16).slice(2));
-
-  const path =
-    `${me.id}/${unique}.${ext}`;
-
-  const {error} =
-    await db.storage
-      .from("listing-photos")
-      .upload(
-        path,
-        file,
-        {
-          cacheControl:"3600",
-          upsert:false,
-          contentType:file.type || "image/jpeg"
-        }
-      );
-
-  if(error){
-    throw new Error(
-      "Не вдалося завантажити фото: " + error.message
-    );
-  }
-
-  const {data} =
-    db.storage
-      .from("listing-photos")
-      .getPublicUrl(path);
-
-  return data.publicUrl;
-}
-
-async function publishListing(){
-  
-    const sellerTelegram = document
-    .getElementById("sellerTelegram")
-    .value
-    .trim();
-
-  if(!sellerTelegram){
-    toast("Вкажи Telegram продавця ❤️");
-    return;
-  }
-
-  const cleanTelegram = sellerTelegram.startsWith("@")
-    ? sellerTelegram
-    : "@" + sellerTelegram;
-
-  const { error: profileError } = await db
-    .from("profiles")
-    .update({ username: cleanTelegram })
-    .eq("id", me.id);
-
-  if(profileError){
-    toast("Не вдалося зберегти Telegram: " + profileError.message);
-    return;
-  }
-
-  const title =
-    document.getElementById("title").value.trim();
-
-  const priceRaw =
-    document.getElementById("price").value.trim();
-
-  if(!title){
-    toast("Напиши назву речі ❤️");
-    return;
-  }
-
-  if(
-    priceRaw === "" ||
-    Number.isNaN(Number(priceRaw)) ||
-    Number(priceRaw) < 0
-  ){
-    toast("Вкажи правильну ціну ❤️");
-    return;
-  }
-
-  if(!me){
-    toast("Немає активного профілю");
-    return;
-  }
-
-  const btn =
-    document.getElementById("publishBtn");
-
-  btn.disabled = true;
-  btn.textContent = "Публікую...";
-
-  try{
-
-    const file =
-      document.getElementById("photo").files?.[0];
-
-    const photoUrl =
-      await uploadPhoto(file);
-
-    const listing = {
-
-      seller_id:me.id,
-
-      title:title,
-
-      category:
-        document.getElementById("category").value,
-
-      size:
-        document.getElementById("size").value.trim()
-        || "Не вказано",
-
-      condition:
-        document.getElementById("condition").value,
-
-      price:Number(priceRaw),
-
-      city:
-        document.getElementById("city").value.trim()
-        || "Не вказано",
-
-      photo_url:photoUrl,
-
-      description:
-        document.getElementById("description").value.trim(),
-
-      status:"active"
-    };
-
-    const {error} =
-      await db
-        .from("listings")
-        .insert(listing);
-
-    if(error){
-      throw new Error(
-        "Не вдалося створити оголошення: " +
-        error.message
-      );
-    }
-
-    resetForm();
-    closeSell();
-
-    await renderProducts();
-
-    toast("Оголошення опубліковано 🌸");
-
-  }catch(error){
-
-    console.error(error);
-    toast(error.message || "Помилка публікації");
-
-  }finally{
-
-    btn.disabled = false;
-    btn.textContent = "Опублікувати";
-  }
-}
-
-function resetForm(){
-
-  document.getElementById("title").value = "";
-  document.getElementById("size").value = "";
-  document.getElementById("price").value = "";
-  document.getElementById("city").value = "";
-  document.getElementById("description").value = "";
-  document.getElementById("photo").value = "";
-  document.getElementById("preview").innerHTML = "";
-}
-
-
-/* ==============================
-   DETAIL
-============================== */
-
-async function openDetail(id){
-
-  try{
-
-    const {data:p,error} =
-      await db
-        .from("listings")
-        .select(`
-          *,
-          profiles (
-            id,
-            username,
-            display_name,
-            avatar_url
-          )
-        `)
-        .eq("id",id)
-        .single();
-
-    if(error) throw error;
-
-    const seller = p.profiles || {};
-    const r = await ratingFor(p.seller_id);
-    const mine = p.seller_id === me?.id;
-
-    const statusText = {
-      active:"Активне",
-      reserved:"Зарезервовано",
-      sold:"Продано"
-    }[p.status] || p.status;
-
-    document.getElementById("detail").innerHTML = `
-
-      <button class="close" onclick="closeDetail()">×</button>
-
-      <img
-        class="detail-photo"
-        src="${html(p.photo_url || FALLBACK)}"
-        onerror="this.onerror=null;this.src=FALLBACK"
-      >
-
-      <div class="detail-title">
-        ${html(p.title)}
-      </div>
-
-      <div class="price">
-        ${money(p.price)} грн
-      </div>
-
-      <div class="status">
-        ${html(statusText)}
-      </div>
-
-      <div class="detail-row">
-        📏 <b>Розмір:</b>
-        ${html(p.size || "Не вказано")}
-      </div>
-
-      <div class="detail-row">
-        ✨ <b>Стан:</b>
-        ${html(p.condition || "Не вказано")}
-      </div>
-
-      <div class="detail-row">
-        📍 <b>Місто:</b>
-        ${html(p.city || "Не вказано")}
-      </div>
-
-      <div class="detail-row">
-        📝 ${html(p.description || "Опис не додано")}
-      </div>
-
-      <button
-        class="primary full"
-        onclick="openProfile('${p.seller_id}')"
-      >
-        👩‍🍼 Профіль продавця
-      </button>
-
-      ${
-        !mine && seller.username
-        ? `
-          <button
-            class="primary full"
-            onclick="openTelegram('${html(seller.username)}')"
-          >
-            💬 Написати продавцю
-          </button>
-        `
-        : ""
-      }
-
-      ${
-        mine
-        ? `
-          <div class="status-actions">
-
-            <button
-              class="secondary"
-              onclick="changeStatus('${p.id}','reserved')"
-            >
-              📌 Резерв
-            </button>
-
-            <button
-              class="secondary"
-              onclick="changeStatus('${p.id}','sold')"
-            >
-              ✅ Продано
-            </button>
-
-          </div>
-
-          <button
-            class="danger full"
-            onclick="deleteListing('${p.id}')"
-          >
-            🗑 Видалити оголошення
-          </button>
-        `
-        : ""
-      }
-    `;
-
-    document
-      .getElementById("detailModal")
-      .classList.add("show");
-
-  }catch(error){
-
-    console.error(error);
-    toast("Не вдалося відкрити оголошення");
-  }
-}
-
-function closeDetail(){
-  document
-    .getElementById("detailModal")
-    .classList.remove("show");
-}
-
-async function changeStatus(id,status){
-
-  const {error} =
-    await db
-      .from("listings")
-      .update({status})
-      .eq("id",id)
-      .eq("seller_id",me.id);
-
-  if(error){
-    toast(error.message);
-    return;
-  }
-
-  closeDetail();
-  await renderProducts();
-
-  toast(
-    status === "sold"
-    ? "Позначено як продано ✅"
-    : "Оголошення зарезервовано 📌"
-  );
-}
-
-async function deleteListing(id){
-
-  if(!confirm("Видалити це оголошення?")){
-    return;
-  }
-
-  const {error} =
-    await db
-      .from("listings")
-      .delete()
-      .eq("id",id)
-      .eq("seller_id",me.id);
-
-  if(error){
-    toast(error.message);
-    return;
-  }
-
-  closeDetail();
-
-  await renderProducts();
-
-  toast("Оголошення видалено");
-}
-
-/* ==============================
-   TELEGRAM SELLER
-============================== */
-
-function openTelegram(value){
-
-  const clean =
-    String(value || "")
-      .replace("@","")
-      .trim();
-
-  if(!clean){
-    toast("Telegram продавця не вказаний");
-    return;
-  }
-
-  const url = "https://t.me/" + clean;
-
-  try{
-
-    if(tg?.openTelegramLink){
-      tg.openTelegramLink(url);
-    }else{
-      window.open(url,"_blank");
-    }
-
-  }catch{
-    window.open(url,"_blank");
-  }
-}
-
-/* ==============================
-   PROFILE
-============================== */
-
-async function openProfile(sellerId){
-
-  try{
-
-    const {data:seller,error} =
-      await db
-        .from("profiles")
-        .select("*")
-        .eq("id",sellerId)
-        .single();
-
-    if(error) throw error;
-
-    const {data:listings,error:listError} =
-      await db
-        .from("listings")
-        .select("*")
-        .eq("seller_id",sellerId)
-        .order("created_at",{ascending:false});
-
-    if(listError) throw listError;
-
-    const r =
-      await ratingFor(sellerId);
-
-    const mine =
-      sellerId === me?.id;
-
-    let myRating = null;
-
-    if(!mine && me){
-
-      const {data:existing} =
-        await db
-          .from("ratings")
-          .select("rating")
-          .eq("seller_id",sellerId)
-          .eq("reviewer_id",me.id)
-          .maybeSingle();
-
-      myRating = existing?.rating || null;
-    }
-
-    selectedRating =
-      myRating || 5;
-
-    const activeListings =
-      (listings || []).filter(x=>x.status==="active");
-
-    document.getElementById("profile").innerHTML = `
-
-      <button
-        class="close"
-        onclick="closeProfile()"
-      >
-        ×
-      </button>
-
-      <div class="profile-head">
-
-        ${
-          seller.avatar_url
-          ? `
-            <img
-              class="profile-avatar"
-              src="${html(seller.avatar_url)}"
-            >
-          `
-          : `
-            <div class="profile-avatar">
-              👩🏻
-            </div>
-          `
-        }
-
-        <div>
-
-          <div class="profile-name">
-            ${html(seller.display_name || "Мама")}
-          </div>
-
-          <div class="profile-user">
-            ${html(seller.username || "")}
-          </div>
-
-          <div class="profile-rating">
-            ${
-              r.avg
-              ? `${stars(r.avg)} ${r.avg.toFixed(1)} · ${r.count} оцінок`
-              : "☆ Поки без оцінок"
-            }
-          </div>
-
-        </div>
-      </div>
-
-      ${
-        !mine && me
-        ? `
-          <div class="rating-box">
-
-            <b>
-              ${
-                myRating
-                ? "Твоя оцінка продавця"
-                : "Оціни продавця"
-              }
-            </b>
-
-            <div id="starsBox" class="stars">
-
-              ${[1,2,3,4,5].map(n=>`
-                <button
-                  class="star ${n<=selectedRating ? "on" : ""}"
-                  onclick="chooseRating(${n})"
-                >
-                  ★
-                </button>
-              `).join("")}
-
-            </div>
-
-            <button
-              class="secondary full"
-              onclick="saveRating('${sellerId}')"
-            >
-              ${
-                myRating
-                ? "Змінити оцінку"
-                : "Поставити оцінку"
-              }
-            </button>
-
-          </div>
-        `
-        : ""
-      }
-
-      ${
-        mine
-        ? `
-          <h3>Мої оголошення · ${(listings || []).length}</h3>
-        `
-        : `
-          <h3>Оголошення продавця · ${activeListings.length}</h3>
-        `
-      }
-
-      <div class="grid">
-
-        ${
-          (mine ? listings : activeListings)?.length
-
-          ? (mine ? listings : activeListings)
-              .map(p=>`
-
-                <article
-                  class="card"
-                  onclick="openDetail('${p.id}')"
-                >
-
-                  <img
-                    class="card-photo"
-                    src="${html(p.photo_url || FALLBACK)}"
-                    onerror="this.onerror=null;this.src=FALLBACK"
-                  >
-
-                  <div class="card-content">
-
-                    <div class="card-title">
-                      ${html(p.title)}
-                    </div>
-
-                    <div class="price">
-                      ${money(p.price)} грн
-                    </div>
-
-                    <div class="meta">
-                      📏 ${html(p.size || "")}
-                    </div>
-
-                    ${
-                      mine
-                      ? `
-                        <div class="status">
-                          ${
-                            p.status==="active"
-                            ? "Активне"
-                            : p.status==="reserved"
-                            ? "Резерв"
-                            : "Продано"
-                          }
-                        </div>
-                      `
-                      : ""
-                    }
-
-                  </div>
-                </article>
-
-              `).join("")
-
-          : `
-              <div class="info">
-                🌸<br>
-                Тут поки немає оголошень
-              </div>
-            `
-        }
-
-      </div>
-    `;
-
-    document
-      .getElementById("profileModal")
-      .classList.add("show");
-
-  }catch(error){
-
-    console.error(error);
-    toast("Не вдалося відкрити профіль");
-  }
-}
-
-function closeProfile(){
-  document
-    .getElementById("profileModal")
-    .classList.remove("show");
-}
-
-async function myProfile(){
-
-  if(!me){
-    toast("Профіль ще підключається");
-    return;
-  }
-
-  await openProfile(me.id);
-}
-
-/* ==============================
-   SAVE RATING
-============================== */
-
-function chooseRating(n){
-
-  selectedRating = n;
-
-  document
-    .querySelectorAll("#starsBox .star")
-    .forEach((star,index)=>{
-      star.classList.toggle(
-        "on",
-        index < n
-      );
-    });
-}
-
-async function saveRating(sellerId){
-
-  if(!me || sellerId === me.id){
-    return;
-  }
-
-  const {error} =
-    await db
-      .from("ratings")
-      .upsert(
-        {
-          seller_id:sellerId,
-          reviewer_id:me.id,
-          rating:selectedRating
-        },
-        {
-          onConflict:"seller_id,reviewer_id"
-        }
-      );
-
-  if(error){
-    toast(error.message);
-    return;
-  }
-
-  toast("Оцінку збережено ⭐");
-
-  await openProfile(sellerId);
-  await renderProducts();
-}
-
-/* ==============================
-   HOME
-============================== */
-
-function home(){
-
-  closeDetail();
-  closeProfile();
-
-  window.scrollTo({
-    top:0,
-    behavior:"smooth"
-  });
-
-  renderProducts();
-}
-
-/* ==============================
-   CLOSE MODAL ON BACKDROP
-============================== */
-
-["sellModal","detailModal","profileModal"]
-.forEach(id=>{
-
-  const modal =
-    document.getElementById(id);
-
-  modal.addEventListener("click",event=>{
-
-    if(event.target === modal){
-      modal.classList.remove("show");
-    }
-  });
-});
-
-/* ==============================
-   GO
-============================== */
-
-start();
-
-</script>
-
-</body>
-</html>
+const SUPABASE_URL="https://kotjqloictmzhqcresaq.supabase.co";
+const SUPABASE_KEY="eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImtvdGpxb
