@@ -12,21 +12,20 @@
 <style>
 :root{
   --bg:#fff7f5;
-  --card:#ffffff;
+  --card:#fff;
   --pink:#d87391;
   --pink-dark:#a94e6c;
   --pink-soft:#f9e5eb;
-  --cream:#fffaf5;
   --text:#3c2930;
   --muted:#927d84;
   --line:#eedde2;
-  --green:#4e8b69;
   --red:#bc5362;
   --gold:#d09b37;
   --shadow:0 8px 25px rgba(87,47,61,.08);
 }
 
 *{box-sizing:border-box}
+
 html{scroll-behavior:smooth}
 
 body{
@@ -93,14 +92,10 @@ header{
   width:42px;
   height:42px;
   min-width:42px;
-  min-height:42px;
-  padding:0;
   border-radius:50%;
-  object-fit:cover;
   background:var(--pink-soft);
-  display:flex;
-  align-items:center;
-  justify-content:center;
+  display:grid;
+  place-items:center;
   font-size:21px;
 }
 
@@ -133,7 +128,6 @@ main{
   display:grid;
   grid-template-columns:minmax(0,1fr) 52px;
   gap:8px;
-  align-items:stretch;
 }
 
 .search{
@@ -144,27 +138,21 @@ main{
   border-radius:17px;
   background:#fff;
   outline:none;
-  color:var(--text);
 }
 
 .filter-btn{
   width:52px;
   height:52px;
-  min-width:52px;
-  min-height:52px;
-  padding:0;
   border-radius:17px;
   background:#fff;
   border:1px solid var(--line);
+  display:grid;
+  place-items:center;
   font-size:20px;
-  display:flex;
-  align-items:center;
-  justify-content:center;
 }
 
 .categories{
   display:flex;
-  align-items:stretch;
   gap:8px;
   overflow:auto;
   padding:12px 0;
@@ -175,9 +163,7 @@ main{
 
 .chip{
   flex:0 0 auto;
-  white-space:nowrap;
   height:40px;
-  min-height:40px;
   padding:0 14px;
   border-radius:999px;
   background:#fff;
@@ -188,7 +174,7 @@ main{
   display:flex;
   align-items:center;
   justify-content:center;
-  line-height:1;
+  white-space:nowrap;
 }
 
 .chip.active{
@@ -249,16 +235,13 @@ main{
   top:8px;
   width:38px;
   height:38px;
-  min-width:38px;
-  min-height:38px;
   padding:0;
   border-radius:50%;
   background:rgba(255,255,255,.92);
   font-size:19px;
+  display:grid;
+  place-items:center;
   z-index:3;
-  display:flex;
-  align-items:center;
-  justify-content:center;
 }
 
 .badge{
@@ -319,7 +302,6 @@ main{
   bottom:0;
   display:grid;
   grid-template-columns:repeat(4,minmax(0,1fr));
-  align-items:end;
   background:rgba(255,255,255,.97);
   backdrop-filter:blur(15px);
   border-top:1px solid var(--line);
@@ -329,22 +311,19 @@ main{
 .nav{
   min-width:0;
   min-height:62px;
-  padding:4px 2px;
-  margin:0;
   background:none;
   color:var(--muted);
   font-size:10px;
+  padding:4px 2px;
   display:flex;
   flex-direction:column;
   align-items:center;
   justify-content:center;
   gap:2px;
-  line-height:1.1;
 }
 
 .nav span{
   height:27px;
-  margin:0;
   display:flex;
   align-items:center;
   justify-content:center;
@@ -354,21 +333,16 @@ main{
 .nav.active{color:var(--pink-dark)}
 
 .sell-fab{
-  background:var(--pink-dark);
-  color:#fff;
   width:48px;
   height:48px;
-  min-width:48px;
-  min-height:48px;
-  padding:0;
   border-radius:17px;
-  margin:0 auto;
+  background:var(--pink-dark);
+  color:#fff;
+  display:grid;
+  place-items:center;
+  margin:auto;
   font-size:26px;
   box-shadow:0 6px 16px rgba(169,78,108,.25);
-  display:flex;
-  align-items:center;
-  justify-content:center;
-  line-height:1;
 }
 
 .modal{
@@ -400,17 +374,13 @@ main{
   top:12px;
   width:40px;
   height:40px;
-  min-width:40px;
-  min-height:40px;
-  padding:0;
   border-radius:50%;
   background:#f2e5e7;
   color:var(--text);
   font-size:23px;
+  display:grid;
+  place-items:center;
   z-index:5;
-  display:flex;
-  align-items:center;
-  justify-content:center;
 }
 
 .sheet h2{
@@ -426,9 +396,9 @@ main{
   margin-bottom:7px;
 }
 
-.field input,
-.field select,
-.field textarea{
+.field > input,
+.field > select,
+.field > textarea{
   width:100%;
   border:1px solid var(--line);
   border-radius:15px;
@@ -438,9 +408,9 @@ main{
   outline:none;
 }
 
-.field input,
-.field select{
-  min-height:48px;
+.field > input,
+.field > select{
+  min-height:50px;
 }
 
 .field textarea{
@@ -454,11 +424,9 @@ main{
   gap:9px;
 }
 
-.primary,
-.secondary,
-.danger{
+.primary,.secondary,.danger{
   width:100%;
-  min-height:48px;
+  min-height:50px;
   padding:0 14px;
   border-radius:15px;
   font-weight:900;
@@ -467,7 +435,6 @@ main{
   align-items:center;
   justify-content:center;
   text-align:center;
-  line-height:1.2;
 }
 
 .primary{
@@ -485,6 +452,33 @@ main{
   color:var(--red);
 }
 
+.checks{
+  display:grid;
+  grid-template-columns:repeat(2,minmax(0,1fr));
+  gap:8px;
+}
+
+.check{
+  min-height:50px;
+  background:#fff;
+  border:1px solid var(--line);
+  border-radius:13px;
+  padding:10px;
+  font-size:12px;
+  display:flex !important;
+  align-items:center;
+  margin:0 !important;
+}
+
+.check input{
+  width:18px !important;
+  height:18px;
+  min-height:18px !important;
+  margin:0 7px 0 0;
+  padding:0;
+  flex:0 0 auto;
+}
+
 .photo-preview{
   display:grid;
   grid-template-columns:repeat(3,minmax(0,1fr));
@@ -494,12 +488,10 @@ main{
 
 .preview-item{
   position:relative;
-  width:100%;
   aspect-ratio:1/1;
-  overflow:hidden;
   border-radius:14px;
+  overflow:hidden;
   background:#f2e6e5;
-  border:1px solid var(--line);
 }
 
 .preview-item img{
@@ -513,50 +505,17 @@ main{
   position:absolute;
   top:6px;
   right:6px;
-  width:30px;
-  height:30px;
-  min-width:30px;
-  min-height:30px;
+  width:31px;
+  height:31px;
   padding:0;
-  margin:0;
   border-radius:50%;
-  background:rgba(55,35,42,.88);
+  background:rgba(55,35,42,.9);
   color:#fff;
-  font-size:19px;
+  font-size:20px;
   font-weight:900;
-  line-height:1;
-  display:flex;
-  align-items:center;
-  justify-content:center;
-  z-index:4;
-  box-shadow:0 3px 10px rgba(0,0,0,.18);
-}
-
-.checks{
   display:grid;
-  grid-template-columns:repeat(2,minmax(0,1fr));
-  gap:8px;
-  align-items:stretch;
-}
-
-.check{
-  background:#fff;
-  border:1px solid var(--line);
-  border-radius:13px;
-  padding:10px;
-  min-height:50px;
-  font-size:12px;
-  display:flex !important;
-  align-items:center;
-  margin:0 !important;
-  line-height:1.25;
-}
-
-.check input{
-  width:auto !important;
-  min-height:0 !important;
-  margin:0 7px 0 0;
-  flex:0 0 auto;
+  place-items:center;
+  z-index:4;
 }
 
 .detail-img{
@@ -579,7 +538,6 @@ main{
   min-width:68px;
   object-fit:cover;
   border-radius:11px;
-  border:2px solid transparent;
 }
 
 .detail-title{
@@ -611,14 +569,14 @@ main{
 }
 
 .admin-box{
-  margin-top:14px;
-  padding:11px 13px;
+  margin-top:12px;
+  padding:10px 12px;
   background:#fff3d7;
   border:1px solid #edd29a;
-  border-radius:15px;
+  border-radius:14px;
+  color:#75541c;
   font-size:12px;
   font-weight:800;
-  color:#75541c;
 }
 
 .profile-head{
@@ -875,8 +833,7 @@ main{
 
 <div class="field">
 <label>Telegram продавця *</label>
-<input id="sellerTelegram" placeholder="@username"
-autocomplete="off" autocapitalize="none">
+<input id="sellerTelegram" placeholder="@username" autocomplete="off" autocapitalize="none">
 </div>
 
 <div class="field">
@@ -919,61 +876,55 @@ autocomplete="off" autocapitalize="none">
 
 <script>
 const SUPABASE_URL="https://kotjqloictmzhqcresaq.supabase.co";
-const SUPABASE_KEY="eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImtvdGpxbG9pY3RtemhxY3Jlc2FxIiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODk5Njc1NiwiZXhwIjoyMTA1NTcyNzU2fQ.EBHCCl9S3Q4HmCL5VkxV9aRscS0FI2wodDjCPeXskeI";
+const SUPABASE_KEY="eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImtvdGpxbG9pY3RtemhxY3Jlc2FxIiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODk5OTY3NTYsImV4cCI6MjEwNTU3Mjc1Nn0.EBHCCl9S3Q4HmCL5VkxV9aRscS0FI2wodDjCPeXskeI";
 
 const db=window.supabase.createClient(SUPABASE_URL,SUPABASE_KEY,{
- auth:{
-   persistSession:true,
-   autoRefreshToken:true,
-   detectSessionInUrl:false
- }
+  auth:{
+    persistSession:true,
+    autoRefreshToken:true,
+    detectSessionInUrl:false
+  }
 });
 
 const tg=window.Telegram?.WebApp||null;
 
 try{
- tg?.ready();
- tg?.expand();
+  tg?.ready();
+  tg?.expand();
 }catch(e){}
 
 let me=null;
+let isAdmin=false;
 let currentCategory="Усі";
 let favoritesOnly=false;
 let favorites=new Set();
 let ratingChoice=5;
 let selectedPhotos=[];
-let isAdmin=false;
-let editingSellerId=null;
 
 const UA_CITIES=[
-"Київ","Харків","Одеса","Дніпро","Львів","Запоріжжя",
-"Кривий Ріг","Миколаїв","Вінниця","Херсон","Полтава",
-"Чернігів","Черкаси","Суми","Житомир","Хмельницький",
-"Чернівці","Рівне","Кропивницький","Івано-Франківськ",
-"Тернопіль","Луцьк","Ужгород","Біла Церква","Кременчук",
-"Кам'янське","Бровари","Буча","Ірпінь","Мукачево",
-"Дрогобич","Стрий","Коломия","Ковель","Умань",
-"Кам'янець-Подільський","Бердичів","Ніжин","Прилуки",
-"Олександрія","Чорноморськ","Ізмаїл","Бориспіль",
-"Фастів","Обухів","Вишгород","Вишневе","Боярка",
-"Нововолинськ","Шептицький","Самбір","Трускавець",
-"Моршин","Яремче","Калуш","Надвірна","Долина",
-"Звягель","Коростень","Конотоп","Шостка","Охтирка",
-"Лубни","Миргород","Горішні Плавні","Сміла","Золотоноша",
+"Київ","Харків","Одеса","Дніпро","Львів","Запоріжжя","Кривий Ріг",
+"Миколаїв","Вінниця","Херсон","Полтава","Чернігів","Черкаси","Суми",
+"Житомир","Хмельницький","Чернівці","Рівне","Кропивницький",
+"Івано-Франківськ","Тернопіль","Луцьк","Ужгород","Біла Церква",
+"Кременчук","Кам'янське","Бровари","Буча","Ірпінь","Мукачево",
+"Дрогобич","Стрий","Коломия","Ковель","Умань","Кам'янець-Подільський",
+"Бердичів","Ніжин","Прилуки","Олександрія","Чорноморськ","Ізмаїл",
+"Бориспіль","Фастів","Обухів","Вишгород","Вишневе","Боярка",
+"Нововолинськ","Шептицький","Самбір","Трускавець","Моршин","Яремче",
+"Калуш","Надвірна","Долина","Звягель","Коростень","Конотоп","Шостка",
+"Охтирка","Лубни","Миргород","Горішні Плавні","Сміла","Золотоноша",
 "Канів","Подільськ","Білгород-Дністровський","Південне"
 ];
 
 const PL_CITIES=[
-"Варшава","Краків","Вроцлав","Лодзь","Познань","Гданськ",
-"Щецин","Люблін","Бидгощ","Білосток","Катовіце","Гдиня",
-"Ченстохова","Радом","Торунь","Сосновець","Кельце",
-"Жешув","Глівіце","Ольштин","Бєльсько-Бяла","Забже",
-"Битом","Зелена Гура","Рибник","Ополе","Тихи",
-"Гожув-Велькопольський","Ельблонг","Плоцьк","Валбжих",
-"Влоцлавек","Тарнув","Кошалін","Каліш","Легниця",
-"Грудзьондз","Слупськ","Явожно","Новий Сонч",
-"Єленя-Гура","Седльце","Мисловіце","Піла","Любін",
-"Іновроцлав","Острув-Велькопольський","Сувалки",
+"Варшава","Краків","Вроцлав","Лодзь","Познань","Гданськ","Щецин",
+"Люблін","Бидгощ","Білосток","Катовіце","Гдиня","Ченстохова","Радом",
+"Торунь","Сосновець","Кельце","Жешув","Глівіце","Ольштин",
+"Бєльсько-Бяла","Забже","Битом","Зелена Гура","Рибник","Ополе",
+"Тихи","Гожув-Велькопольський","Ельблонг","Плоцьк","Валбжих",
+"Влоцлавек","Тарнув","Кошалін","Каліш","Легниця","Грудзьондз",
+"Слупськ","Явожно","Новий Сонч","Єленя-Гура","Седльце","Мисловіце",
+"Піла","Любін","Іновроцлав","Острув-Велькопольський","Сувалки",
 "Гнезно","Пшемисль","Замосць","Хелм","Лешно"
 ];
 
@@ -985,1209 +936,1100 @@ encodeURIComponent(`<svg xmlns="http://www.w3.org/2000/svg" width="700" height="
 </svg>`);
 
 function esc(v){
- return String(v??"")
- .replaceAll("&","&amp;")
- .replaceAll("<","&lt;")
- .replaceAll(">","&gt;")
- .replaceAll('"',"&quot;")
- .replaceAll("'","&#039;");
+  return String(v??"")
+  .replaceAll("&","&amp;")
+  .replaceAll("<","&lt;")
+  .replaceAll(">","&gt;")
+  .replaceAll('"',"&quot;")
+  .replaceAll("'","&#039;");
 }
 
 function toast(text){
- const el=document.getElementById("toast");
- el.textContent=text;
- el.classList.add("show");
- clearTimeout(window.toastTimer);
- window.toastTimer=setTimeout(()=>el.classList.remove("show"),2800);
+  const el=document.getElementById("toast");
+  el.textContent=text;
+  el.classList.add("show");
+  clearTimeout(window.toastTimer);
+  window.toastTimer=setTimeout(()=>el.classList.remove("show"),2800);
 }
 
 function flag(c){
- if(c==="Україна")return "🇺🇦";
- if(c==="Польща")return "🇵🇱";
- return "🌍";
+  if(c==="Україна")return "🇺🇦";
+  if(c==="Польща")return "🇵🇱";
+  return "🌍";
 }
 
 function currencySymbol(currency,country){
- if(currency==="PLN"||country==="Польща")return "zł";
- return "грн";
+  return currency==="PLN"||country==="Польща"?"zł":"грн";
 }
 
 function formatPrice(p){
- return Number(p||0).toLocaleString("uk-UA");
+  return Number(p||0).toLocaleString("uk-UA");
 }
 
 function statusText(s){
- if(s==="sold")return "Продано";
- if(s==="reserved")return "Резерв";
- return "Активне";
+  if(s==="sold")return "Продано";
+  if(s==="reserved")return "Резерв";
+  return "Активне";
 }
 
 function tgUser(){
- return tg?.initDataUnsafe?.user||null;
+  return tg?.initDataUnsafe?.user||null;
 }
 
 function getName(){
- const u=tgUser();
- if(!u)return "Мама";
- return [u.first_name,u.last_name].filter(Boolean).join(" ")||"Мама";
+  const u=tgUser();
+  if(!u)return "Мама";
+  return [u.first_name,u.last_name].filter(Boolean).join(" ")||"Мама";
 }
 
 async function init(){
- try{
-   const {data,error}=await db.auth.getSession();
-   if(error)throw error;
+  try{
+    const {data,error}=await db.auth.getSession();
+    if(error)throw error;
 
-   if(data.session){
-     me=data.session.user;
-   }else{
-     const auth=await db.auth.signInAnonymously();
-     if(auth.error)throw auth.error;
-     me=auth.data.user;
-   }
+    if(data.session){
+      me=data.session.user;
+    }else{
+      const auth=await db.auth.signInAnonymously();
+      if(auth.error)throw auth.error;
+      me=auth.data.user;
+    }
 
-   await ensureProfile();
-   await loadAdminStatus();
-   await loadFavorites();
-   await renderListings();
+    await ensureProfile();
+    await loadAdminStatus();
+    await loadFavorites();
+    await renderListings();
 
- }catch(e){
-   console.error(e);
-   document.getElementById("products").innerHTML=
-   `<div class="empty">😔<br><b>Не вдалося відкрити маркет</b><br>${esc(e.message)}</div>`;
- }
+  }catch(e){
+    console.error(e);
+    document.getElementById("products").innerHTML=
+    `<div class="empty">😔<br><b>Не вдалося відкрити маркет</b><br>${esc(e.message)}</div>`;
+  }
 }
 
 async function ensureProfile(){
- const u=tgUser();
+  const u=tgUser();
 
- const {data:old}=await db
- .from("profiles")
- .select("*")
- .eq("id",me.id)
- .maybeSingle();
+  const {data:old,error:readError}=await db
+  .from("profiles")
+  .select("id,username,display_name,avatar_url,country,city,is_admin")
+  .eq("id",me.id)
+  .maybeSingle();
 
- const telegram=u?.username ? "@"+u.username : (old?.username||"");
+  if(readError)throw readError;
 
- const profileData={
-   id:me.id,
-   username:telegram,
-   display_name:old?.display_name||getName(),
-   avatar_url:old?.avatar_url||u?.photo_url||null,
-   country:old?.country||null,
-   city:old?.city||null
- };
+  const telegram=u?.username
+    ?"@"+u.username
+    :(old?.username||"");
 
- const {error}=await db
- .from("profiles")
- .upsert(profileData);
+  if(old){
+    const {error}=await db
+    .from("profiles")
+    .update({
+      username:telegram,
+      display_name:old.display_name||getName(),
+      avatar_url:old.avatar_url||u?.photo_url||null
+    })
+    .eq("id",me.id);
 
- if(error)throw error;
+    if(error)throw error;
+  }else{
+    const {error}=await db
+    .from("profiles")
+    .insert({
+      id:me.id,
+      username:telegram,
+      display_name:getName(),
+      avatar_url:u?.photo_url||null,
+      country:null,
+      city:null
+    });
+
+    if(error)throw error;
+  }
 }
 
 async function loadAdminStatus(){
- if(!me){
-   isAdmin=false;
-   return;
- }
+  const {data,error}=await db
+  .from("profiles")
+  .select("is_admin")
+  .eq("id",me.id)
+  .maybeSingle();
 
- const {data,error}=await db
- .from("profiles")
- .select("is_admin")
- .eq("id",me.id)
- .maybeSingle();
+  if(error){
+    console.error(error);
+    isAdmin=false;
+    return;
+  }
 
- if(error){
-   console.error("Admin check:",error);
-   isAdmin=false;
-   return;
- }
-
- isAdmin=data?.is_admin===true;
+  isAdmin=data?.is_admin===true;
 }
 
 async function loadFavorites(){
- if(!me)return;
+  const {data,error}=await db
+  .from("favorites")
+  .select("listing_id")
+  .eq("user_id",me.id);
 
- const {data,error}=await db
- .from("favorites")
- .select("listing_id")
- .eq("user_id",me.id);
+  if(error){
+    console.error(error);
+    return;
+  }
 
- if(error){
-   console.error(error);
-   return;
- }
-
- favorites=new Set((data||[]).map(x=>String(x.listing_id)));
+  favorites=new Set((data||[]).map(x=>String(x.listing_id)));
 }
 
 function setCategory(cat,button){
- currentCategory=cat;
- document.querySelectorAll(".chip").forEach(x=>x.classList.remove("active"));
- button.classList.add("active");
- renderListings();
+  currentCategory=cat;
+  document.querySelectorAll(".chip").forEach(x=>x.classList.remove("active"));
+  button.classList.add("active");
+  renderListings();
 }
 
 function toggleFilters(){
- const f=document.getElementById("filters");
- f.style.display=f.style.display==="none"?"block":"none";
+  const f=document.getElementById("filters");
+  f.style.display=f.style.display==="none"?"block":"none";
 }
 
 async function getListings(){
- let q=db
- .from("listings")
- .select("*,profiles(id,username,display_name,avatar_url)")
- .in("status",["active","reserved"]);
+  let q=db
+  .from("listings")
+  .select("*,profiles(id,username,display_name,avatar_url)")
+  .in("status",["active","reserved"]);
 
- if(currentCategory!=="Усі"){
-   q=q.eq("category",currentCategory);
- }
+  if(currentCategory!=="Усі"){
+    q=q.eq("category",currentCategory);
+  }
 
- const sort=document.getElementById("sort").value;
+  const sort=document.getElementById("sort").value;
 
- if(sort==="cheap"){
-   q=q.order("price",{ascending:true});
- }else if(sort==="expensive"){
-   q=q.order("price",{ascending:false});
- }else{
-   q=q.order("created_at",{ascending:false});
- }
+  if(sort==="cheap"){
+    q=q.order("price",{ascending:true});
+  }else if(sort==="expensive"){
+    q=q.order("price",{ascending:false});
+  }else{
+    q=q.order("created_at",{ascending:false});
+  }
 
- const {data,error}=await q;
- if(error)throw error;
+  const {data,error}=await q;
+  if(error)throw error;
 
- const search=document.getElementById("search").value.trim().toLowerCase();
- const country=document.getElementById("filterCountry").value;
- const min=Number(document.getElementById("minPrice").value||0);
- const maxRaw=document.getElementById("maxPrice").value;
- const max=maxRaw===""?Infinity:Number(maxRaw);
+  const search=document.getElementById("search").value.trim().toLowerCase();
+  const country=document.getElementById("filterCountry").value;
+  const min=Number(document.getElementById("minPrice").value||0);
+  const maxRaw=document.getElementById("maxPrice").value;
+  const max=maxRaw===""?Infinity:Number(maxRaw);
 
- return (data||[]).filter(p=>{
-   if(favoritesOnly&&!favorites.has(String(p.id)))return false;
-   if(country&&p.country!==country)return false;
+  return (data||[]).filter(p=>{
+    if(favoritesOnly&&!favorites.has(String(p.id)))return false;
+    if(country&&p.country!==country)return false;
 
-   const price=Number(p.price||0);
-   if(price<min||price>max)return false;
+    const itemPrice=Number(p.price||0);
+    if(itemPrice<min||itemPrice>max)return false;
 
-   if(search){
-     const text=[
-       p.title,p.category,p.size,p.city,p.country,
-       p.condition,p.description
-     ].join(" ").toLowerCase();
+    if(search){
+      const text=[
+        p.title,p.category,p.size,p.city,p.country,
+        p.condition,p.description
+      ].join(" ").toLowerCase();
 
-     if(!text.includes(search))return false;
-   }
+      if(!text.includes(search))return false;
+    }
 
-   return true;
- });
+    return true;
+  });
 }
 
 async function renderListings(){
- const box=document.getElementById("products");
- box.innerHTML='<div class="loading">Завантажуємо 🌸</div>';
+  const box=document.getElementById("products");
+  box.innerHTML='<div class="loading">Завантажуємо 🌸</div>';
 
- try{
-   const items=await getListings();
+  try{
+    const items=await getListings();
 
-   document.getElementById("pageTitle").textContent=
-   favoritesOnly?"Обране ❤️":"Оголошення";
+    document.getElementById("pageTitle").textContent=
+      favoritesOnly?"Обране ❤️":"Оголошення";
 
-   document.getElementById("count").textContent=
-   `${items.length} шт.`;
+    document.getElementById("count").textContent=`${items.length} шт.`;
 
-   if(!items.length){
-     box.innerHTML=favoritesOnly
-     ?'<div class="empty">♡<br><b>В обраному поки порожньо</b><br>Натискай сердечко на товарах, які сподобались.</div>'
-     :'<div class="empty">🌸<br><b>Нічого не знайдено</b><br>Спробуй змінити фільтри.</div>';
-     return;
-   }
+    if(!items.length){
+      box.innerHTML=favoritesOnly
+      ?'<div class="empty">♡<br><b>В обраному поки порожньо</b></div>'
+      :'<div class="empty">🌸<br><b>Нічого не знайдено</b></div>';
+      return;
+    }
 
-   box.innerHTML=items.map(p=>{
-     const seller=p.profiles||{};
-     const fav=favorites.has(String(p.id));
+    box.innerHTML=items.map(p=>{
+      const seller=p.profiles||{};
+      const fav=favorites.has(String(p.id));
 
-     return `
-     <article class="card">
-       <div class="photo-box" onclick="openDetail('${p.id}')">
-         <img class="photo"
-         src="${esc(p.photo_url||placeholder)}"
-         onerror="this.onerror=null;this.src=placeholder">
+      return `
+      <article class="card">
+        <div class="photo-box" onclick="openDetail('${p.id}')">
+          <img class="photo"
+          src="${esc(p.photo_url||placeholder)}"
+          onerror="this.onerror=null;this.src=placeholder">
 
-         <div class="badge">
-           ${flag(p.country)} ${esc(p.country||"")}
-         </div>
+          <div class="badge">
+            ${flag(p.country)} ${esc(p.country||"")}
+          </div>
 
-         <button class="favorite"
-         onclick="event.stopPropagation();toggleFavorite('${p.id}')">
-           ${fav?"❤️":"🤍"}
-         </button>
-       </div>
+          <button class="favorite"
+          onclick="event.stopPropagation();toggleFavorite('${p.id}')">
+            ${fav?"❤️":"🤍"}
+          </button>
+        </div>
 
-       <div class="card-body" onclick="openDetail('${p.id}')">
-         <div class="card-title">${esc(p.title)}</div>
+        <div class="card-body" onclick="openDetail('${p.id}')">
+          <div class="card-title">${esc(p.title)}</div>
 
-         <div class="price">
-           ${formatPrice(p.price)}
-           ${currencySymbol(p.currency,p.country)}
-         </div>
+          <div class="price">
+            ${formatPrice(p.price)}
+            ${currencySymbol(p.currency,p.country)}
+          </div>
 
-         <div class="meta">
-           📍 ${esc(p.city||"Не вказано")}
-         </div>
+          <div class="meta">📍 ${esc(p.city||"Не вказано")}</div>
 
-         <div class="meta">
-           📏 ${esc(p.size||"Не вказано")}
-           · ${esc(p.condition||"")}
-         </div>
+          <div class="meta">
+            📏 ${esc(p.size||"Не вказано")} · ${esc(p.condition||"")}
+          </div>
 
-         ${p.status==="reserved"
-           ?'<div class="status">📌 Резерв</div>'
-           :''}
+          ${p.status==="reserved"
+            ?'<div class="status">📌 Резерв</div>'
+            :''}
 
-         <div class="seller">
-           👩‍🍼 ${esc(seller.display_name||seller.username||"Продавець")}
-         </div>
-       </div>
-     </article>`;
-   }).join("");
+          <div class="seller">
+            👩‍🍼 ${esc(seller.display_name||seller.username||"Продавець")}
+          </div>
+        </div>
+      </article>`;
+    }).join("");
 
- }catch(e){
-   console.error(e);
-   box.innerHTML=
-   `<div class="empty">😔<br><b>Помилка завантаження</b><br>${esc(e.message)}</div>`;
- }
+  }catch(e){
+    console.error(e);
+    box.innerHTML=
+    `<div class="empty">😔<br><b>Помилка завантаження</b><br>${esc(e.message)}</div>`;
+  }
 }
 
 async function toggleFavorite(id){
- if(!me)return;
+  if(!me)return;
 
- if(favorites.has(String(id))){
-   const {error}=await db
-   .from("favorites")
-   .delete()
-   .eq("user_id",me.id)
-   .eq("listing_id",id);
+  if(favorites.has(String(id))){
+    const {error}=await db
+    .from("favorites")
+    .delete()
+    .eq("user_id",me.id)
+    .eq("listing_id",id);
 
-   if(error){
-     toast(error.message);
-     return;
-   }
+    if(error){
+      toast(error.message);
+      return;
+    }
 
-   favorites.delete(String(id));
- }else{
-   const {error}=await db
-   .from("favorites")
-   .insert({
-     user_id:me.id,
-     listing_id:Number(id)
-   });
+    favorites.delete(String(id));
+  }else{
+    const {error}=await db
+    .from("favorites")
+    .insert({
+      user_id:me.id,
+      listing_id:Number(id)
+    });
 
-   if(error){
-     toast(error.message);
-     return;
-   }
+    if(error){
+      toast(error.message);
+      return;
+    }
 
-   favorites.add(String(id));
- }
+    favorites.add(String(id));
+  }
 
- await renderListings();
+  await renderListings();
 }
 
 function showHome(){
- favoritesOnly=false;
- setNav("navHome");
- renderListings();
- window.scrollTo({top:0,behavior:"smooth"});
+  favoritesOnly=false;
+  setNav("navHome");
+  renderListings();
+  window.scrollTo({top:0,behavior:"smooth"});
 }
 
 function showFavorites(){
- favoritesOnly=true;
- setNav("navFav");
- renderListings();
- window.scrollTo({top:0,behavior:"smooth"});
+  favoritesOnly=true;
+  setNav("navFav");
+  renderListings();
+  window.scrollTo({top:0,behavior:"smooth"});
 }
 
 function setNav(id){
- document.querySelectorAll(".nav").forEach(x=>x.classList.remove("active"));
- document.getElementById(id)?.classList.add("active");
+  document.querySelectorAll(".nav").forEach(x=>x.classList.remove("active"));
+  document.getElementById(id)?.classList.add("active");
 }
 
 document.getElementById("search").addEventListener("input",()=>{
- clearTimeout(window.searchTimer);
- window.searchTimer=setTimeout(renderListings,250);
+  clearTimeout(window.searchTimer);
+  window.searchTimer=setTimeout(renderListings,250);
 });
 
-document.getElementById("minPrice").addEventListener("input",()=>{
- clearTimeout(window.filterTimer);
- window.filterTimer=setTimeout(renderListings,250);
-});
-
-document.getElementById("maxPrice").addEventListener("input",()=>{
- clearTimeout(window.filterTimer);
- window.filterTimer=setTimeout(renderListings,250);
-});
+document.getElementById("minPrice").addEventListener("input",renderListings);
+document.getElementById("maxPrice").addEventListener("input",renderListings);
 
 function updateCurrency(){
- const country=document.getElementById("country").value;
+  const country=document.getElementById("country").value;
 
- document.getElementById("priceLabel").textContent=
- country==="Польща"?"Ціна, zł *":"Ціна, грн *";
+  document.getElementById("priceLabel").textContent=
+    country==="Польща"?"Ціна, zł *":"Ціна, грн *";
 
- const cities=country==="Польща"
- ?PL_CITIES
- :country==="Україна"
- ?UA_CITIES
- :[];
+  const cities=
+    country==="Польща"?PL_CITIES:
+    country==="Україна"?UA_CITIES:[];
 
- document.getElementById("cityList").innerHTML=
- cities.map(x=>`<option value="${esc(x)}"></option>`).join("");
+  document.getElementById("cityList").innerHTML=
+    cities.map(x=>`<option value="${esc(x)}"></option>`).join("");
 }
 
 async function openSell(){
- if(!me){
-   toast("Зачекай, профіль ще завантажується 🌸");
-   return;
- }
+  if(!me){
+    toast("Профіль ще завантажується 🌸");
+    return;
+  }
 
- resetForm();
+  resetForm();
 
- const {data:p}=await db
- .from("profiles")
- .select("username")
- .eq("id",me.id)
- .maybeSingle();
+  const {data:p}=await db
+  .from("profiles")
+  .select("username")
+  .eq("id",me.id)
+  .maybeSingle();
 
- document.getElementById("sellerTelegram").value=p?.username||"";
- document.getElementById("sellModal").classList.add("show");
+  document.getElementById("sellerTelegram").value=p?.username||"";
+  document.getElementById("sellModal").classList.add("show");
 }
 
 function closeSell(){
- document.getElementById("sellModal").classList.remove("show");
+  document.getElementById("sellModal").classList.remove("show");
 }
 
 function resetForm(){
- editingSellerId=null;
- selectedPhotos=[];
+  selectedPhotos=[];
 
- document.getElementById("formTitle").textContent="Нове оголошення 🌸";
- document.getElementById("editId").value="";
- document.getElementById("title").value="";
- document.getElementById("category").value="Одяг";
- document.getElementById("size").value="";
- document.getElementById("condition").value="Як нове";
- document.getElementById("country").value="";
- document.getElementById("city").value="";
- document.getElementById("price").value="";
- document.getElementById("description").value="";
- document.getElementById("photos").value="";
- document.getElementById("photoPreview").innerHTML="";
- document.getElementById("sellerTelegram").value="";
+  document.getElementById("formTitle").textContent="Нове оголошення 🌸";
+  document.getElementById("editId").value="";
+  document.getElementById("title").value="";
+  document.getElementById("category").value="Одяг";
+  document.getElementById("size").value="";
+  document.getElementById("condition").value="Як нове";
+  document.getElementById("country").value="";
+  document.getElementById("city").value="";
+  document.getElementById("price").value="";
+  document.getElementById("description").value="";
+  document.getElementById("photos").value="";
+  document.getElementById("photoPreview").innerHTML="";
 
- document.querySelectorAll('input[name="delivery"]')
- .forEach(x=>x.checked=false);
+  document.querySelectorAll('input[name="delivery"]')
+  .forEach(x=>x.checked=false);
 
- updateCurrency();
-
- const btn=document.getElementById("publishBtn");
- btn.disabled=false;
- btn.textContent="Опублікувати 🌸";
+  updateCurrency();
+  document.getElementById("publishBtn").textContent="Опублікувати 🌸";
 }
 
 function previewPhotos(){
- const input=document.getElementById("photos");
- const incoming=[...input.files];
+  const input=document.getElementById("photos");
+  const incoming=[...input.files];
 
- for(const file of incoming){
-   if(selectedPhotos.length>=6){
-     toast("Можна додати максимум 6 фото 📸");
-     break;
-   }
+  for(const file of incoming){
+    if(selectedPhotos.length>=6){
+      toast("Можна додати максимум 6 фото 📸");
+      break;
+    }
 
-   const duplicate=selectedPhotos.some(oldFile=>
-     oldFile.name===file.name &&
-     oldFile.size===file.size &&
-     oldFile.lastModified===file.lastModified
-   );
+    const duplicate=selectedPhotos.some(f=>
+      f.name===file.name &&
+      f.size===file.size &&
+      f.lastModified===file.lastModified
+    );
 
-   if(!duplicate){
-     selectedPhotos.push(file);
-   }
- }
+    if(!duplicate)selectedPhotos.push(file);
+  }
 
- input.value="";
- renderPhotoPreview();
+  input.value="";
+  renderPhotoPreview();
 }
 
 function renderPhotoPreview(){
- const box=document.getElementById("photoPreview");
- box.innerHTML="";
+  const box=document.getElementById("photoPreview");
+  box.innerHTML="";
 
- selectedPhotos.forEach((file,index)=>{
-   const item=document.createElement("div");
-   item.className="preview-item";
+  selectedPhotos.forEach((file,index)=>{
+    const item=document.createElement("div");
+    item.className="preview-item";
 
-   const img=document.createElement("img");
-   const objectUrl=URL.createObjectURL(file);
-   img.src=objectUrl;
+    const img=document.createElement("img");
+    img.src=URL.createObjectURL(file);
 
-   img.onload=()=>{
-     URL.revokeObjectURL(objectUrl);
-   };
+    const remove=document.createElement("button");
+    remove.type="button";
+    remove.className="remove-photo";
+    remove.textContent="×";
 
-   const remove=document.createElement("button");
-   remove.type="button";
-   remove.className="remove-photo";
-   remove.textContent="×";
-   remove.setAttribute("aria-label","Видалити фото");
+    remove.onclick=e=>{
+      e.preventDefault();
+      e.stopPropagation();
+      selectedPhotos.splice(index,1);
+      renderPhotoPreview();
+    };
 
-   remove.onclick=e=>{
-     e.preventDefault();
-     e.stopPropagation();
-     removeSelectedPhoto(index);
-   };
-
-   item.appendChild(img);
-   item.appendChild(remove);
-   box.appendChild(item);
- });
-}
-
-function removeSelectedPhoto(index){
- selectedPhotos.splice(index,1);
- renderPhotoPreview();
+    item.appendChild(img);
+    item.appendChild(remove);
+    box.appendChild(item);
+  });
 }
 
 async function uploadPhoto(file){
- const ext=(file.name.split(".").pop()||"jpg").toLowerCase();
+  const ext=(file.name.split(".").pop()||"jpg").toLowerCase();
 
- const uid=crypto.randomUUID
- ?crypto.randomUUID()
- :Date.now()+"-"+Math.random().toString(16).slice(2);
+  const uid=crypto.randomUUID
+    ?crypto.randomUUID()
+    :Date.now()+"-"+Math.random().toString(16).slice(2);
 
- const path=`${me.id}/${uid}.${ext}`;
+  const path=`${me.id}/${uid}.${ext}`;
 
- const {error}=await db.storage
- .from("listing-photos")
- .upload(path,file,{
-   contentType:file.type||"image/jpeg",
-   upsert:false
- });
+  const {error}=await db.storage
+  .from("listing-photos")
+  .upload(path,file,{
+    contentType:file.type||"image/jpeg",
+    upsert:false
+  });
 
- if(error)throw error;
+  if(error)throw error;
 
- return db.storage
- .from("listing-photos")
- .getPublicUrl(path).data.publicUrl;
+  return db.storage
+  .from("listing-photos")
+  .getPublicUrl(path).data.publicUrl;
 }
 
 async function saveListing(){
- const editId=document.getElementById("editId").value;
- const title=document.getElementById("title").value.trim();
- const category=document.getElementById("category").value;
- const size=document.getElementById("size").value.trim();
- const condition=document.getElementById("condition").value;
- const country=document.getElementById("country").value;
- const city=document.getElementById("city").value.trim();
- const price=document.getElementById("price").value;
- const description=document.getElementById("description").value.trim();
+  const editId=document.getElementById("editId").value;
+  const title=document.getElementById("title").value.trim();
+  const category=document.getElementById("category").value;
+  const size=document.getElementById("size").value.trim();
+  const condition=document.getElementById("condition").value;
+  const country=document.getElementById("country").value;
+  const city=document.getElementById("city").value.trim();
+  const price=document.getElementById("price").value;
+  const description=document.getElementById("description").value.trim();
 
- let username=document.getElementById("sellerTelegram").value.trim();
+  let username=document.getElementById("sellerTelegram").value.trim();
 
- if(!title){
-   toast("Напиши назву товару ❤️");
-   return;
- }
+  if(!title){toast("Напиши назву товару ❤️");return}
+  if(!country){toast("Оберіть країну 🌍");return}
+  if(!city){toast("Вкажи місто 📍");return}
+  if(price===""||Number(price)<0){toast("Вкажи правильну ціну 💰");return}
+  if(!username){toast("Вкажи Telegram продавця 💬");return}
 
- if(!country){
-   toast("Оберіть країну 🌍");
-   return;
- }
+  username="@"+username.replace(/^@/,"");
 
- if(!city){
-   toast("Вкажи місто 📍");
-   return;
- }
+  const delivery=[...document.querySelectorAll('input[name="delivery"]:checked')]
+  .map(x=>x.value);
 
- if(price===""||Number(price)<0){
-   toast("Вкажи правильну ціну 💰");
-   return;
- }
+  const files=[...selectedPhotos].slice(0,6);
 
- if(!username){
-   toast("Вкажи Telegram продавця 💬");
-   return;
- }
+  if(!editId&&!files.length){
+    toast("Додай хоча б одне фото 📸");
+    return;
+  }
 
- username="@"+username.replace(/^@/,"");
+  const btn=document.getElementById("publishBtn");
+  btn.disabled=true;
+  btn.textContent=editId?"Зберігаємо...":"Публікуємо...";
 
- const delivery=[
-   ...document.querySelectorAll('input[name="delivery"]:checked')
- ].map(x=>x.value);
+  try{
+    const {error:profileError}=await db
+    .from("profiles")
+    .update({
+      username,
+      country,
+      city
+    })
+    .eq("id",me.id);
 
- const files=[...selectedPhotos].slice(0,6);
+    if(profileError)throw profileError;
 
- if(!editId&&!files.length){
-   toast("Додай хоча б одне фото 📸");
-   return;
- }
+    const payload={
+      title,
+      category,
+      size:size||"Не вказано",
+      condition,
+      country,
+      city,
+      price:Number(price),
+      currency:country==="Польща"?"PLN":"UAH",
+      delivery,
+      description,
+      updated_at:new Date().toISOString()
+    };
 
- const btn=document.getElementById("publishBtn");
- btn.disabled=true;
- btn.textContent=editId?"Зберігаємо...":"Публікуємо...";
+    let listingId=editId;
 
- try{
-   const targetSellerId=
-     editId && isAdmin && editingSellerId
-     ?editingSellerId
-     :me.id;
+    if(editId){
+      const {error}=await db
+      .from("listings")
+      .update(payload)
+      .eq("id",editId)
+      .eq("seller_id",me.id);
 
-   const profileResult=await db
-   .from("profiles")
-   .update({
-     username,
-     country,
-     city
-   })
-   .eq("id",targetSellerId);
+      if(error)throw error;
+    }else{
+      const {data,error}=await db
+      .from("listings")
+      .insert({
+        ...payload,
+        seller_id:me.id,
+        status:"active"
+      })
+      .select()
+      .single();
 
-   if(profileResult.error)throw profileResult.error;
+      if(error)throw error;
+      listingId=data.id;
+    }
 
-   const payload={
-     title,
-     category,
-     size:size||"Не вказано",
-     condition,
-     country,
-     city,
-     price:Number(price),
-     currency:country==="Польща"?"PLN":"UAH",
-     delivery,
-     description,
-     updated_at:new Date().toISOString()
-   };
+    if(files.length){
+      const urls=[];
 
-   let listingId=editId;
+      for(let i=0;i<files.length;i++){
+        const url=await uploadPhoto(files[i]);
+        urls.push(url);
 
-   if(editId){
-     let updateQuery=db
-     .from("listings")
-     .update(payload)
-     .eq("id",editId);
+        const {error:imageError}=await db
+        .from("listing_images")
+        .insert({
+          listing_id:Number(listingId),
+          image_url:url,
+          position:i
+        });
 
-     if(!isAdmin){
-       updateQuery=updateQuery.eq("seller_id",me.id);
-     }
+        if(imageError)throw imageError;
+      }
 
-     const {error}=await updateQuery;
-     if(error)throw error;
+      if(urls[0]){
+        const {error:coverError}=await db
+        .from("listings")
+        .update({photo_url:urls[0]})
+        .eq("id",listingId)
+        .eq("seller_id",me.id);
 
-   }else{
-     const {data,error}=await db
-     .from("listings")
-     .insert({
-       ...payload,
-       seller_id:me.id,
-       status:"active"
-     })
-     .select()
-     .single();
+        if(coverError)throw coverError;
+      }
+    }
 
-     if(error)throw error;
-     listingId=data.id;
-   }
+    selectedPhotos=[];
+    closeSell();
+    await renderListings();
 
-   if(files.length){
-     const urls=[];
+    toast(editId
+      ?"Оголошення оновлено 🌸"
+      :"Оголошення опубліковано 🌸");
 
-     for(let i=0;i<files.length;i++){
-       const url=await uploadPhoto(files[i]);
-       urls.push(url);
-
-       const {error:imageError}=await db
-       .from("listing_images")
-       .insert({
-         listing_id:Number(listingId),
-         image_url:url,
-         position:i
-       });
-
-       if(imageError)throw imageError;
-     }
-
-     if(urls[0]){
-       let coverQuery=db
-       .from("listings")
-       .update({photo_url:urls[0]})
-       .eq("id",listingId);
-
-       if(!isAdmin){
-         coverQuery=coverQuery.eq("seller_id",me.id);
-       }
-
-       const {error:coverError}=await coverQuery;
-       if(coverError)throw coverError;
-     }
-   }
-
-   selectedPhotos=[];
-   closeSell();
-   await renderListings();
-
-   toast(
-     editId
-     ?"Оголошення оновлено 🌸"
-     :"Оголошення опубліковано 🌸"
-   );
-
- }catch(e){
-   console.error(e);
-   toast("Помилка: "+e.message);
-
- }finally{
-   btn.disabled=false;
-   btn.textContent=editId
-   ?"Зберегти зміни"
-   :"Опублікувати 🌸";
- }
+  }catch(e){
+    console.error(e);
+    toast("Помилка: "+e.message);
+  }finally{
+    btn.disabled=false;
+    btn.textContent=editId?"Зберегти зміни":"Опублікувати 🌸";
+  }
 }
 
 async function openDetail(id){
- try{
-   const {data:p,error}=await db
-   .from("listings")
-   .select("*,profiles(id,username,display_name,avatar_url)")
-   .eq("id",id)
-   .single();
+  try{
+    const {data:p,error}=await db
+    .from("listings")
+    .select("*,profiles(id,username,display_name,avatar_url)")
+    .eq("id",id)
+    .single();
 
-   if(error)throw error;
+    if(error)throw error;
 
-   const {data:images}=await db
-   .from("listing_images")
-   .select("*")
-   .eq("listing_id",id)
-   .order("position",{ascending:true});
+    const {data:images}=await db
+    .from("listing_images")
+    .select("*")
+    .eq("listing_id",id)
+    .order("position",{ascending:true});
 
-   db.rpc("increment_listing_views",{
-     listing_id_input:Number(id)
-   }).then(()=>{}).catch(()=>{});
+    db.rpc("increment_listing_views",{
+      listing_id_input:Number(id)
+    }).then(()=>{}).catch(()=>{});
 
-   const seller=p.profiles||{};
-   const mine=p.seller_id===me.id;
-   const canManage=mine||isAdmin;
+    const seller=p.profiles||{};
+    const mine=p.seller_id===me.id;
 
-   const allImages=(images||[]).map(x=>x.image_url);
+    const allImages=(images||[]).map(x=>x.image_url);
 
-   if(!allImages.length&&p.photo_url){
-     allImages.push(p.photo_url);
-   }
+    if(!allImages.length&&p.photo_url){
+      allImages.push(p.photo_url);
+    }
 
-   const cover=allImages[0]||placeholder;
+    const cover=allImages[0]||placeholder;
 
-   document.getElementById("detail").innerHTML=`
-   <button class="close" onclick="closeDetail()">×</button>
+    document.getElementById("detail").innerHTML=`
+    <button class="close" onclick="closeDetail()">×</button>
 
-   <img id="detailMainImage"
-   class="detail-img"
-   src="${esc(cover)}"
-   onerror="this.onerror=null;this.src=placeholder">
+    <img id="detailMainImage"
+    class="detail-img"
+    src="${esc(cover)}"
+    onerror="this.onerror=null;this.src=placeholder">
 
-   ${allImages.length>1?`
-   <div class="gallery">
-     ${allImages.map(url=>`
-       <img src="${esc(url)}"
-       onclick="document.getElementById('detailMainImage').src=this.src">
-     `).join("")}
-   </div>`:""}
+    ${allImages.length>1?`
+    <div class="gallery">
+      ${allImages.map(url=>`
+        <img src="${esc(url)}"
+        onclick="document.getElementById('detailMainImage').src=this.src">
+      `).join("")}
+    </div>`:""}
 
-   <div class="detail-title">${esc(p.title)}</div>
+    <div class="detail-title">${esc(p.title)}</div>
 
-   <div class="detail-price">
-     ${formatPrice(p.price)}
-     ${currencySymbol(p.currency,p.country)}
-   </div>
+    <div class="detail-price">
+      ${formatPrice(p.price)}
+      ${currencySymbol(p.currency,p.country)}
+    </div>
 
-   ${p.status==="reserved"
-     ?'<div class="status">📌 Зарезервовано</div>'
-     :''}
+    ${p.status==="reserved"
+      ?'<div class="status">📌 Зарезервовано</div>'
+      :''}
 
-   ${isAdmin&&!mine
-     ?'<div class="admin-box">👑 Режим адміністратора</div>'
-     :''}
+    ${isAdmin&&!mine
+      ?'<div class="admin-box">👑 Адміністратор може видалити це оголошення</div>'
+      :''}
 
-   <div class="detail-row">
-     ${flag(p.country)}
-     <b>${esc(p.country||"Країна не вказана")}</b>
-     · 📍 ${esc(p.city||"")}
-   </div>
+    <div class="detail-row">
+      ${flag(p.country)} <b>${esc(p.country||"")}</b>
+      · 📍 ${esc(p.city||"")}
+    </div>
 
-   <div class="detail-row">
-     📏 <b>Розмір:</b> ${esc(p.size||"Не вказано")}
-   </div>
+    <div class="detail-row">
+      📏 <b>Розмір:</b> ${esc(p.size||"Не вказано")}
+    </div>
 
-   <div class="detail-row">
-     ✨ <b>Стан:</b> ${esc(p.condition||"Не вказано")}
-   </div>
+    <div class="detail-row">
+      ✨ <b>Стан:</b> ${esc(p.condition||"Не вказано")}
+    </div>
 
-   <div class="detail-row">
-     📦 <b>Доставка:</b>
-     ${p.delivery?.length
-       ?esc(p.delivery.join(", "))
-       :"Не вказано"}
-   </div>
+    <div class="detail-row">
+      📦 <b>Доставка:</b>
+      ${p.delivery?.length?esc(p.delivery.join(", ")):"Не вказано"}
+    </div>
 
-   <div class="detail-row">
-     📝 ${esc(p.description||"Опис не додано")}
-   </div>
+    <div class="detail-row">
+      📝 ${esc(p.description||"Опис не додано")}
+    </div>
 
-   <div class="detail-row">
-     👁 ${Number(p.views||0)} переглядів
-   </div>
+    <div class="seller-box" onclick="openProfile('${p.seller_id}')">
+      <b>👩‍🍼 ${esc(seller.display_name||"Продавець")}</b>
+      <div class="muted">${esc(seller.username||"")}</div>
+      <div style="margin-top:5px">Відкрити профіль ›</div>
+    </div>
 
-   <div class="seller-box"
-   onclick="openProfile('${p.seller_id}')">
-     <b>👩‍🍼 ${esc(seller.display_name||"Продавець")}</b>
-     <div class="muted">${esc(seller.username||"")}</div>
-     <div style="margin-top:5px">Відкрити профіль ›</div>
-   </div>
+    ${!mine&&seller.username?`
+      <button class="primary"
+      onclick="openTelegram('${esc(seller.username)}')">
+        💬 Написати продавцю
+      </button>
+    `:""}
 
-   ${!mine&&seller.username?`
-     <button class="primary"
-     onclick="openTelegram('${esc(seller.username)}')">
-       💬 Написати продавцю
-     </button>
-   `:""}
+    <button class="secondary"
+    onclick="toggleFavorite('${p.id}')">
+      ${favorites.has(String(p.id))
+        ?"❤️ Прибрати з обраного"
+        :"🤍 Додати в обране"}
+    </button>
 
-   <button class="secondary"
-   onclick="toggleFavorite('${p.id}')">
-     ${favorites.has(String(p.id))
-       ?"❤️ Прибрати з обраного"
-       :"🤍 Додати в обране"}
-   </button>
+    ${mine?`
+      <button class="primary" onclick="editListing('${p.id}')">
+        ✏️ Редагувати
+      </button>
 
-   ${canManage?`
-     <button class="primary"
-     onclick="editListing('${p.id}')">
-       ✏️ ${mine?"Редагувати":"Редагувати як адмін 👑"}
-     </button>
+      ${p.status!=="reserved"?`
+        <button class="secondary"
+        onclick="changeStatus('${p.id}','reserved')">
+          📌 Поставити в резерв
+        </button>
+      `:`
+        <button class="secondary"
+        onclick="changeStatus('${p.id}','active')">
+          ↩️ Зняти резерв
+        </button>
+      `}
 
-     ${p.status!=="reserved"?`
-       <button class="secondary"
-       onclick="changeStatus('${p.id}','reserved')">
-         📌 Поставити в резерв
-       </button>
-     `:`
-       <button class="secondary"
-       onclick="changeStatus('${p.id}','active')">
-         ↩️ Зняти резерв
-       </button>
-     `}
+      ${p.status!=="sold"?`
+        <button class="secondary"
+        onclick="changeStatus('${p.id}','sold')">
+          ✅ Позначити проданим
+        </button>
+      `:""}
+    `:""}
 
-     ${p.status!=="sold"?`
-       <button class="secondary"
-       onclick="changeStatus('${p.id}','sold')">
-         ✅ Позначити проданим
-       </button>
-     `:""}
+    ${(mine||isAdmin)?`
+      <button class="danger" onclick="deleteListing('${p.id}')">
+        🗑 ${mine?"Видалити оголошення":"Видалити оголошення 👑"}
+      </button>
+    `:""}
+    `;
 
-     <button class="danger"
-     onclick="deleteListing('${p.id}')">
-       🗑 ${mine
-         ?"Видалити оголошення"
-         :"Видалити як адмін 👑"}
-     </button>
-   `:""}
-   `;
+    document.getElementById("detailModal").classList.add("show");
 
-   document.getElementById("detailModal")
-   .classList.add("show");
-
- }catch(e){
-   console.error(e);
-   toast("Не вдалося відкрити оголошення");
- }
+  }catch(e){
+    console.error(e);
+    toast("Не вдалося відкрити оголошення");
+  }
 }
 
 function closeDetail(){
- document.getElementById("detailModal")
- .classList.remove("show");
+  document.getElementById("detailModal").classList.remove("show");
 }
 
 function openTelegram(username){
- const clean=String(username||"")
- .replace(/^@/,"")
- .trim();
+  const clean=String(username||"").replace(/^@/,"").trim();
 
- if(!clean){
-   toast("Telegram продавця не вказано");
-   return;
- }
+  if(!clean){
+    toast("Telegram продавця не вказано");
+    return;
+  }
 
- const url="https://t.me/"+clean;
+  const url="https://t.me/"+clean;
 
- try{
-   if(tg?.openTelegramLink){
-     tg.openTelegramLink(url);
-   }else{
-     window.open(url,"_blank");
-   }
- }catch(e){
-   window.location.href=url;
- }
+  try{
+    if(tg?.openTelegramLink){
+      tg.openTelegramLink(url);
+    }else{
+      window.open(url,"_blank");
+    }
+  }catch(e){
+    window.location.href=url;
+  }
 }
 
 async function changeStatus(id,status){
- let query=db
- .from("listings")
- .update({
-   status,
-   updated_at:new Date().toISOString()
- })
- .eq("id",id);
+  const {error}=await db
+  .from("listings")
+  .update({
+    status,
+    updated_at:new Date().toISOString()
+  })
+  .eq("id",id)
+  .eq("seller_id",me.id);
 
- if(!isAdmin){
-   query=query.eq("seller_id",me.id);
- }
+  if(error){
+    toast(error.message);
+    return;
+  }
 
- const {error}=await query;
+  closeDetail();
+  await renderListings();
 
- if(error){
-   toast("Помилка: "+error.message);
-   return;
- }
-
- closeDetail();
- await renderListings();
-
- toast(
-   status==="sold"
-   ?"Позначено як продано ✅"
-   :status==="reserved"
-   ?"Товар у резерві 📌"
-   :"Резерв знято 🌸"
- );
+  toast(status==="sold"
+    ?"Позначено як продано ✅"
+    :status==="reserved"
+    ?"Товар у резерві 📌"
+    :"Резерв знято 🌸");
 }
 
 async function deleteListing(id){
- const message=isAdmin
- ?"Точно видалити це оголошення? 👑"
- :"Точно видалити це оголошення?";
+  if(!confirm("Точно видалити це оголошення?"))return;
 
- if(!confirm(message))return;
+  let query=db
+  .from("listings")
+  .delete()
+  .eq("id",id);
 
- let query=db
- .from("listings")
- .delete()
- .eq("id",id);
+  if(!isAdmin){
+    query=query.eq("seller_id",me.id);
+  }
 
- if(!isAdmin){
-   query=query.eq("seller_id",me.id);
- }
+  const {error}=await query;
 
- const {error}=await query;
+  if(error){
+    toast("Помилка: "+error.message);
+    return;
+  }
 
- if(error){
-   toast("Помилка: "+error.message);
-   return;
- }
-
- closeDetail();
- await renderListings();
- toast("Оголошення видалено 🗑");
+  closeDetail();
+  await renderListings();
+  toast("Оголошення видалено 🗑");
 }
 
 async function editListing(id){
- const {data:p,error}=await db
- .from("listings")
- .select("*")
- .eq("id",id)
- .single();
+  const {data:p,error}=await db
+  .from("listings")
+  .select("*")
+  .eq("id",id)
+  .single();
 
- if(error){
-   toast("Не вдалося відкрити редагування");
-   return;
- }
+  if(error||p.seller_id!==me.id){
+    toast("Редагувати може тільки власник");
+    return;
+  }
 
- const mine=p.seller_id===me.id;
+  closeDetail();
+  selectedPhotos=[];
 
- if(!mine&&!isAdmin){
-   toast("Немає доступу до редагування");
-   return;
- }
+  document.getElementById("editId").value=p.id;
+  document.getElementById("formTitle").textContent="Редагувати оголошення ✏️";
+  document.getElementById("title").value=p.title||"";
+  document.getElementById("category").value=p.category||"Одяг";
+  document.getElementById("size").value=p.size||"";
+  document.getElementById("condition").value=p.condition||"Як нове";
+  document.getElementById("country").value=p.country||"";
+  document.getElementById("city").value=p.city||"";
+  document.getElementById("price").value=p.price||"";
+  document.getElementById("description").value=p.description||"";
+  document.getElementById("photos").value="";
+  document.getElementById("photoPreview").innerHTML="";
 
- closeDetail();
+  updateCurrency();
 
- editingSellerId=p.seller_id;
- selectedPhotos=[];
+  document.querySelectorAll('input[name="delivery"]').forEach(x=>{
+    x.checked=(p.delivery||[]).includes(x.value);
+  });
 
- document.getElementById("photos").value="";
- document.getElementById("photoPreview").innerHTML="";
+  const {data:profile}=await db
+  .from("profiles")
+  .select("username")
+  .eq("id",me.id)
+  .maybeSingle();
 
- document.getElementById("editId").value=p.id;
- document.getElementById("formTitle").textContent=
- isAdmin&&!mine
- ?"Редагування 👑"
- :"Редагувати оголошення ✏️";
-
- document.getElementById("title").value=p.title||"";
- document.getElementById("category").value=p.category||"Одяг";
- document.getElementById("size").value=p.size||"";
- document.getElementById("condition").value=p.condition||"Як нове";
- document.getElementById("country").value=p.country||"";
- document.getElementById("city").value=p.city||"";
- document.getElementById("price").value=p.price||"";
- document.getElementById("description").value=p.description||"";
-
- updateCurrency();
-
- document.querySelectorAll('input[name="delivery"]')
- .forEach(x=>{
-   x.checked=(p.delivery||[]).includes(x.value);
- });
-
- const {data:profile}=await db
- .from("profiles")
- .select("username")
- .eq("id",p.seller_id)
- .maybeSingle();
-
- document.getElementById("sellerTelegram").value=
- profile?.username||"";
-
- document.getElementById("publishBtn").textContent=
- "Зберегти зміни";
-
- document.getElementById("sellModal")
- .classList.add("show");
+  document.getElementById("sellerTelegram").value=profile?.username||"";
+  document.getElementById("publishBtn").textContent="Зберегти зміни";
+  document.getElementById("sellModal").classList.add("show");
 }
 
 async function getRating(sellerId){
- const {data,error}=await db
- .from("ratings")
- .select("rating")
- .eq("seller_id",sellerId);
+  const {data,error}=await db
+  .from("ratings")
+  .select("rating")
+  .eq("seller_id",sellerId);
 
- if(error||!data?.length){
-   return {avg:0,count:0};
- }
+  if(error||!data?.length)return {avg:0,count:0};
 
- const values=data.map(x=>Number(x.rating));
+  const values=data.map(x=>Number(x.rating));
 
- return {
-   avg:values.reduce((a,b)=>a+b,0)/values.length,
-   count:values.length
- };
+  return {
+    avg:values.reduce((a,b)=>a+b,0)/values.length,
+    count:values.length
+  };
 }
 
 function stars(avg){
- if(!avg)return "☆☆☆☆☆";
- const n=Math.round(avg);
- return "★".repeat(n)+"☆".repeat(5-n);
+  if(!avg)return "☆☆☆☆☆";
+  const n=Math.round(avg);
+  return "★".repeat(n)+"☆".repeat(5-n);
 }
 
 async function openProfile(id){
- try{
-   const {data:seller,error}=await db
-   .from("profiles")
-   .select("*")
-   .eq("id",id)
-   .single();
+  try{
+    if(!id){
+      toast("Не вдалося визначити профіль");
+      return;
+    }
 
-   if(error)throw error;
+    const {data:seller,error}=await db
+    .from("profiles")
+    .select("id,username,display_name,avatar_url,country,city,is_admin")
+    .eq("id",id)
+    .maybeSingle();
 
-   const mine=id===me.id;
+    if(error)throw error;
+    if(!seller)throw new Error("Профіль не знайдено");
 
-   let query=db
-   .from("listings")
-   .select("*")
-   .eq("seller_id",id)
-   .order("created_at",{ascending:false});
+    const mine=id===me.id;
 
-   if(!mine&&!isAdmin){
-     query=query.in("status",["active","reserved"]);
-   }
+    let query=db
+    .from("listings")
+    .select("*")
+    .eq("seller_id",id)
+    .order("created_at",{ascending:false});
 
-   const {data:listings}=await query;
-   const rating=await getRating(id);
+    if(!mine){
+      query=query.in("status",["active","reserved"]);
+    }
 
-   let myRating=null;
+    const listingResult=await query;
 
-   if(!mine){
-     const {data:r}=await db
-     .from("ratings")
-     .select("rating,review")
-     .eq("seller_id",id)
-     .eq("reviewer_id",me.id)
-     .maybeSingle();
+    if(listingResult.error)throw listingResult.error;
 
-     myRating=r?.rating||null;
-   }
+    const listings=listingResult.data||[];
+    const rating=await getRating(id);
 
-   ratingChoice=myRating||5;
+    let myRating=null;
 
-   document.getElementById("profile").innerHTML=`
-   <button class="close" onclick="closeProfile()">×</button>
+    if(!mine){
+      const {data:r}=await db
+      .from("ratings")
+      .select("rating,review")
+      .eq("seller_id",id)
+      .eq("reviewer_id",me.id)
+      .maybeSingle();
 
-   <div class="profile-head">
-     ${seller.avatar_url
-       ?`<img class="profile-avatar" src="${esc(seller.avatar_url)}">`
-       :'<div class="profile-avatar">👩🏻</div>'}
+      myRating=r?.rating||null;
+    }
 
-     <div>
-       <div class="profile-name">
-         ${esc(seller.display_name||"Мама")}
-         ${seller.is_admin?" 👑":""}
-       </div>
+    ratingChoice=myRating||5;
 
-       <div class="muted">
-         ${esc(seller.username||"")}
-       </div>
+    document.getElementById("profile").innerHTML=`
+    <button class="close" onclick="closeProfile()">×</button>
 
-       <div class="stars">
-         ${stars(rating.avg)}
-         ${rating.count
-           ?`${rating.avg.toFixed(1)} · ${rating.count}`
-           :"Без оцінок"}
-       </div>
-     </div>
-   </div>
+    <div class="profile-head">
+      ${seller.avatar_url
+        ?`<img class="profile-avatar"
+          src="${esc(seller.avatar_url)}"
+          onerror="this.outerHTML='<div class=&quot;profile-avatar&quot;>👩🏻</div>'">`
+        :'<div class="profile-avatar">👩🏻</div>'}
 
-   ${seller.country||seller.city?`
-   <div class="seller-box">
-     ${flag(seller.country)}
-     ${esc(seller.country||"")}
-     ${seller.city
-       ?" · 📍 "+esc(seller.city)
-       :""}
-   </div>`:""}
+      <div>
+        <div class="profile-name">
+          ${esc(seller.display_name||"Мама")}
+          ${seller.is_admin?" 👑":""}
+        </div>
 
-   ${!mine?`
-   <div class="seller-box">
-     <b>Оцінити продавця</b>
+        <div class="muted">
+          ${esc(seller.username||"")}
+        </div>
 
-     <div id="starPicker" class="star-picker">
-       ${[1,2,3,4,5].map(n=>`
-       <button
-       class="star-btn ${n<=ratingChoice?"on":""}"
-       onclick="chooseRating(${n})">★</button>
-       `).join("")}
-     </div>
+        <div class="stars">
+          ${stars(rating.avg)}
+          ${rating.count
+            ?`${rating.avg.toFixed(1)} · ${rating.count}`
+            :"Без оцінок"}
+        </div>
+      </div>
+    </div>
 
-     <button class="secondary"
-     onclick="saveRating('${id}')">
-       ⭐ Зберегти оцінку
-     </button>
-   </div>
-   `:""}
+    ${seller.country||seller.city?`
+      <div class="seller-box">
+        ${flag(seller.country)}
+        ${esc(seller.country||"")}
+        ${seller.city?" · 📍 "+esc(seller.city):""}
+      </div>
+    `:""}
 
-   ${!mine&&seller.username?`
-   <button class="primary"
-   onclick="openTelegram('${esc(seller.username)}')">
-     💬 Написати в Telegram
-   </button>
-   `:""}
+    ${!mine?`
+      <div class="seller-box">
+        <b>Оцінити продавця</b>
 
-   <h3>${mine?"Мої оголошення":"Оголошення продавця"}</h3>
+        <div id="starPicker" class="star-picker">
+          ${[1,2,3,4,5].map(n=>`
+            <button
+            class="star-btn ${n<=ratingChoice?"on":""}"
+            onclick="chooseRating(${n})">★</button>
+          `).join("")}
+        </div>
 
-   <div class="grid">
-   ${(listings||[]).map(p=>`
-     <article class="card"
-     onclick="closeProfile();openDetail('${p.id}')">
+        <button class="secondary" onclick="saveRating('${id}')">
+          ⭐ Зберегти оцінку
+        </button>
+      </div>
+    `:""}
 
-       <div class="photo-box">
-         <img class="photo"
-         src="${esc(p.photo_url||placeholder)}"
-         onerror="this.onerror=null;this.src=placeholder">
-       </div>
+    ${!mine&&seller.username?`
+      <button class="primary"
+      onclick="openTelegram('${esc(seller.username)}')">
+        💬 Написати в Telegram
+      </button>
+    `:""}
 
-       <div class="card-body">
-         <div class="card-title">
-           ${esc(p.title)}
-         </div>
+    <h3>${mine?"Мої оголошення":"Оголошення продавця"}</h3>
 
-         <div class="price">
-           ${formatPrice(p.price)}
-           ${currencySymbol(p.currency,p.country)}
-         </div>
+    <div class="grid">
+      ${listings.map(p=>`
+        <article class="card"
+        onclick="closeProfile();openDetail('${p.id}')">
 
-         <div class="meta">
-           📍 ${esc(p.city||"")}
-         </div>
+          <div class="photo-box">
+            <img class="photo"
+            src="${esc(p.photo_url||placeholder)}"
+            onerror="this.onerror=null;this.src=placeholder">
+          </div>
 
-         ${(mine||isAdmin)?`
-         <div class="status">
-           ${statusText(p.status)}
-         </div>
-         `:""}
-       </div>
-     </article>
-   `).join("")||
-   '<div class="empty">Поки немає оголошень 🌸</div>'}
-   </div>
-   `;
+          <div class="card-body">
+            <div class="card-title">${esc(p.title)}</div>
 
-   document.getElementById("profileModal")
-   .classList.add("show");
+            <div class="price">
+              ${formatPrice(p.price)}
+              ${currencySymbol(p.currency,p.country)}
+            </div>
 
- }catch(e){
-   console.error(e);
-   toast("Не вдалося відкрити профіль");
- }
+            <div class="meta">📍 ${esc(p.city||"")}</div>
+
+            ${mine?`
+              <div class="status">${statusText(p.status)}</div>
+            `:""}
+          </div>
+        </article>
+      `).join("")||'<div class="empty">Поки немає оголошень 🌸</div>'}
+    </div>
+    `;
+
+    document.getElementById("profileModal").classList.add("show");
+
+  }catch(e){
+    console.error("Profile error:",e);
+    toast("Не вдалося відкрити профіль: "+e.message);
+  }
 }
 
 function closeProfile(){
- document.getElementById("profileModal")
- .classList.remove("show");
+  document.getElementById("profileModal").classList.remove("show");
 }
 
 async function openMyProfile(){
- if(!me){
-   toast("Профіль ще завантажується");
-   return;
- }
+  if(!me){
+    toast("Профіль ще завантажується 🌸");
+    return;
+  }
 
- setNav("navProfile");
- await openProfile(me.id);
+  setNav("navProfile");
+  await openProfile(me.id);
 }
 
 function chooseRating(n){
- ratingChoice=n;
+  ratingChoice=n;
 
- document.querySelectorAll("#starPicker .star-btn")
- .forEach((x,i)=>{
-   x.classList.toggle("on",i<n);
- });
+  document.querySelectorAll("#starPicker .star-btn")
+  .forEach((x,i)=>{
+    x.classList.toggle("on",i<n);
+  });
 }
 
 async function saveRating(sellerId){
- if(sellerId===me.id)return;
+  if(sellerId===me.id)return;
 
- const {error}=await db
- .from("ratings")
- .upsert({
-   seller_id:sellerId,
-   reviewer_id:me.id,
-   rating:ratingChoice
- },{
-   onConflict:"seller_id,reviewer_id"
- });
+  const {error}=await db
+  .from("ratings")
+  .upsert({
+    seller_id:sellerId,
+    reviewer_id:me.id,
+    rating:ratingChoice
+  },{
+    onConflict:"seller_id,reviewer_id"
+  });
 
- if(error){
-   toast(error.message);
-   return;
- }
+  if(error){
+    toast(error.message);
+    return;
+  }
 
- toast("Оцінку збережено ⭐");
- await openProfile(sellerId);
+  toast("Оцінку збережено ⭐");
+  await openProfile(sellerId);
 }
 
 ["sellModal","detailModal","profileModal"].forEach(id=>{
- const modal=document.getElementById(id);
+  const modal=document.getElementById(id);
 
- modal.addEventListener("click",e=>{
-   if(e.target===modal){
-     modal.classList.remove("show");
-   }
- });
+  modal.addEventListener("click",e=>{
+    if(e.target===modal){
+      modal.classList.remove("show");
+    }
+  });
 });
 
 init();
