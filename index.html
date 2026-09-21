@@ -3,6 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no,viewport-fit=cover">
+<meta name="theme-color" content="#fff7f5">
 <title>Baby & Mama Market 🌸</title>
 
 <script src="https://telegram.org/js/telegram-web-app.js"></script>
@@ -10,22 +11,22 @@
 
 <style>
 :root{
-  --bg:#fbf1ee;
-  --card:#fffaf8;
-  --white:#fff;
-  --pink:#b85f7d;
-  --pink2:#8d425e;
-  --soft:#f3e2e4;
-  --text:#3b2830;
-  --muted:#9a8189;
-  --line:#ead9de;
-  --green:#608b72;
-  --red:#b94e5e;
-  --gold:#bd8d3e;
+  --bg:#fff7f5;
+  --card:#ffffff;
+  --pink:#d87391;
+  --pink-dark:#a94e6c;
+  --pink-soft:#f9e5eb;
+  --cream:#fffaf5;
+  --text:#3c2930;
+  --muted:#927d84;
+  --line:#eedde2;
+  --green:#4e8b69;
+  --red:#bc5362;
+  --gold:#d09b37;
+  --shadow:0 8px 25px rgba(87,47,61,.08);
 }
 
-*{box-sizing:border-box;-webkit-tap-highlight-color:transparent}
-
+*{box-sizing:border-box}
 html{scroll-behavior:smooth}
 
 body{
@@ -37,81 +38,157 @@ body{
 }
 
 button,input,select,textarea{font:inherit}
-button{border:0;cursor:pointer}
+button{cursor:pointer;border:0}
+button:disabled{opacity:.55;cursor:not-allowed}
 
 header{
-  background:#fff;
-  padding:calc(20px + env(safe-area-inset-top)) 18px 20px;
+  position:sticky;
+  top:0;
+  z-index:20;
+  background:rgba(255,247,245,.96);
+  backdrop-filter:blur(16px);
+  padding:calc(14px + env(safe-area-inset-top)) 16px 12px;
   border-bottom:1px solid var(--line);
 }
 
-.brand{display:flex;align-items:center;gap:11px}
-.logo{font-size:38px}
+.head{
+  max-width:800px;
+  margin:auto;
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  gap:10px;
+}
 
-h1{margin:0;font-size:25px}
-.subtitle{color:var(--muted);margin-top:5px}
+.brand{
+  display:flex;
+  gap:10px;
+  align-items:center;
+}
 
-main{padding:15px}
+.logo{
+  width:46px;
+  height:46px;
+  border-radius:15px;
+  background:var(--pink-soft);
+  display:grid;
+  place-items:center;
+  font-size:25px;
+}
+
+.brand-title{
+  font-size:20px;
+  font-weight:900;
+}
+
+.brand-sub{
+  font-size:11px;
+  color:var(--muted);
+  margin-top:2px;
+}
+
+.avatar-top{
+  width:42px;
+  height:42px;
+  border-radius:50%;
+  object-fit:cover;
+  background:var(--pink-soft);
+  display:grid;
+  place-items:center;
+  font-size:21px;
+}
+
+main{
+  max-width:800px;
+  margin:auto;
+  padding:14px;
+}
+
+.hero{
+  padding:19px;
+  border-radius:24px;
+  background:linear-gradient(135deg,#f8dfe7,#fff2e9);
+  margin-bottom:13px;
+}
+
+.hero h1{
+  margin:0;
+  font-size:25px;
+  line-height:1.1;
+}
+
+.hero p{
+  margin:7px 0 0;
+  color:#775c66;
+  line-height:1.4;
+}
+
+.search-row{
+  display:grid;
+  grid-template-columns:1fr auto;
+  gap:8px;
+}
 
 .search{
   width:100%;
-  padding:16px;
-  background:#fff;
+  padding:15px;
   border:1px solid var(--line);
-  border-radius:18px;
+  border-radius:17px;
+  background:#fff;
   outline:none;
-  font-size:16px;
-}
-
-.add{
-  width:100%;
-  padding:16px;
-  margin-top:11px;
-  border-radius:18px;
-  background:var(--pink2);
-  color:#fff;
-  font-size:16px;
-  font-weight:800;
-}
-
-.quickFilters{
-  display:grid;
-  grid-template-columns:1fr 1fr;
-  gap:9px;
-  margin-top:11px;
-}
-
-.quickFilters select{
-  width:100%;
-  padding:12px 9px;
-  border-radius:14px;
-  border:1px solid var(--line);
-  background:#fff;
   color:var(--text);
+}
+
+.filter-btn{
+  width:52px;
+  border-radius:17px;
+  background:#fff;
+  border:1px solid var(--line);
+  font-size:20px;
 }
 
 .categories{
   display:flex;
   gap:8px;
-  overflow-x:auto;
-  padding:13px 0;
+  overflow:auto;
+  padding:12px 0;
   scrollbar-width:none;
 }
+
 .categories::-webkit-scrollbar{display:none}
 
-.categories button{
-  flex:none;
-  padding:10px 15px;
+.chip{
+  white-space:nowrap;
+  padding:10px 14px;
   border-radius:999px;
   background:#fff;
+  color:var(--text);
   border:1px solid var(--line);
-  color:#557eb0;
+  font-weight:700;
+  font-size:13px;
 }
 
-.categories button.active{
-  background:var(--pink);
+.chip.active{
+  background:var(--pink-dark);
   color:#fff;
-  border-color:var(--pink);
+  border-color:var(--pink-dark);
+}
+
+.section-head{
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  margin:4px 2px 12px;
+}
+
+.section-head h2{
+  margin:0;
+  font-size:19px;
+}
+
+.count{
+  color:var(--muted);
+  font-size:13px;
 }
 
 .grid{
@@ -121,100 +198,135 @@ main{padding:15px}
 }
 
 .card{
-  overflow:hidden;
-  border-radius:20px;
-  background:var(--card);
-  border:1px solid var(--line);
-  box-shadow:0 5px 18px rgba(80,40,55,.06);
-}
-
-.photoWrap{
   position:relative;
+  background:#fff;
+  border:1px solid var(--line);
+  border-radius:21px;
+  overflow:hidden;
+  box-shadow:var(--shadow);
 }
 
-.cardPhoto{
-  display:block;
-  width:100%;
+.photo-box{
+  position:relative;
   aspect-ratio:1/1;
-  object-fit:cover;
-  background:#eee1df;
+  background:#f2e6e5;
 }
 
-.countryBadge{
+.photo{
+  width:100%;
+  height:100%;
+  object-fit:cover;
+  display:block;
+}
+
+.favorite{
+  position:absolute;
+  right:8px;
+  top:8px;
+  width:38px;
+  height:38px;
+  border-radius:50%;
+  background:rgba(255,255,255,.92);
+  font-size:19px;
+  z-index:3;
+}
+
+.badge{
   position:absolute;
   left:8px;
   top:8px;
+  background:rgba(255,255,255,.94);
   padding:6px 9px;
   border-radius:999px;
-  background:rgba(255,255,255,.9);
   font-size:11px;
   font-weight:800;
 }
 
-.cardBody{padding:11px}
+.card-body{padding:11px}
 
-.title{
-  font-size:15px;
+.card-title{
   font-weight:900;
-  line-height:1.25;
-  min-height:37px;
+  font-size:14px;
+  line-height:1.3;
+  min-height:36px;
 }
 
 .price{
-  color:var(--pink2);
   font-size:19px;
   font-weight:900;
+  color:var(--pink-dark);
   margin-top:5px;
 }
 
 .meta{
-  font-size:12px;
+  font-size:11px;
   color:var(--muted);
   margin-top:5px;
   line-height:1.4;
 }
 
-.sellerMini{
-  margin-top:9px;
-  padding-top:9px;
+.seller{
+  margin-top:8px;
+  padding-top:8px;
   border-top:1px solid var(--line);
-  font-size:12px;
+  font-size:11px;
   font-weight:700;
 }
 
-.empty{
+.empty,.loading{
   grid-column:1/-1;
   text-align:center;
-  padding:55px 15px;
+  padding:55px 20px;
   color:var(--muted);
   line-height:1.6;
 }
 
 .bottom{
   position:fixed;
-  z-index:30;
-  left:0;right:0;bottom:0;
-  background:#fff;
-  border-top:1px solid var(--line);
+  z-index:50;
+  left:0;
+  right:0;
+  bottom:0;
   display:grid;
-  grid-template-columns:repeat(3,1fr);
-  min-height:78px;
-  padding-bottom:env(safe-area-inset-bottom);
+  grid-template-columns:repeat(4,1fr);
+  background:rgba(255,255,255,.97);
+  backdrop-filter:blur(15px);
+  border-top:1px solid var(--line);
+  padding:7px 4px calc(7px + env(safe-area-inset-bottom));
 }
 
-.bottom button{
+.nav{
   background:none;
   color:var(--muted);
-  font-size:12px;
+  font-size:10px;
+  padding:5px 2px;
 }
-.bottom span{display:block;font-size:23px;margin-bottom:3px}
+
+.nav span{
+  display:block;
+  font-size:22px;
+  margin-bottom:2px;
+}
+
+.nav.active{color:var(--pink-dark)}
+
+.sell-fab{
+  background:var(--pink-dark);
+  color:#fff;
+  width:48px;
+  height:48px;
+  border-radius:17px;
+  margin:auto;
+  font-size:26px;
+  box-shadow:0 6px 16px rgba(169,78,108,.25);
+}
 
 .modal{
   display:none;
   position:fixed;
-  z-index:100;
   inset:0;
-  background:rgba(38,22,28,.47);
+  z-index:100;
+  background:rgba(48,28,35,.5);
   align-items:flex-end;
 }
 
@@ -222,178 +334,252 @@ main{padding:15px}
 
 .sheet{
   width:100%;
+  max-width:720px;
+  margin:auto;
+  background:var(--bg);
+  border-radius:28px 28px 0 0;
   max-height:94vh;
   overflow:auto;
-  background:#fffaf8;
-  border-radius:27px 27px 0 0;
-  padding:20px 16px calc(30px + env(safe-area-inset-bottom));
+  padding:19px 16px calc(28px + env(safe-area-inset-bottom));
   position:relative;
 }
 
 .close{
   position:absolute;
-  right:14px;
+  right:13px;
   top:12px;
   width:40px;
   height:40px;
   border-radius:50%;
-  background:#f0e1df;
-  font-size:25px;
+  background:#f2e5e7;
   color:var(--text);
+  font-size:23px;
+  z-index:5;
 }
 
-.sheet h2{margin:4px 50px 20px 0}
+.sheet h2{
+  margin:5px 50px 19px 0;
+}
 
 .field{margin:13px 0}
 
 .field label{
   display:block;
+  font-size:13px;
   font-weight:800;
   margin-bottom:7px;
-  font-size:14px;
 }
 
 .field input,
 .field select,
 .field textarea{
   width:100%;
-  padding:14px;
   border:1px solid var(--line);
   border-radius:15px;
+  padding:14px;
   background:#fff;
   color:var(--text);
   outline:none;
 }
 
 .field textarea{
-  min-height:105px;
+  min-height:100px;
   resize:vertical;
 }
 
 .row{
   display:grid;
   grid-template-columns:1fr 1fr;
-  gap:10px;
+  gap:9px;
 }
 
-.file{
-  border:1px dashed #cca4b1 !important;
-}
-
-.preview img{
+.primary,
+.secondary,
+.danger{
   width:100%;
-  max-height:300px;
-  object-fit:cover;
-  border-radius:17px;
-  margin-top:10px;
-}
-
-.actions{
-  display:grid;
-  grid-template-columns:1fr 1.5fr;
-  gap:10px;
-  margin-top:18px;
-}
-
-.secondary,.primary,.danger{
   padding:14px;
   border-radius:15px;
-  font-weight:800;
+  font-weight:900;
+  margin-top:8px;
 }
 
-.secondary{background:#efe1df;color:var(--text)}
-.primary{background:var(--pink2);color:#fff}
-.danger{background:#fde4e7;color:var(--red)}
+.primary{
+  background:var(--pink-dark);
+  color:#fff;
+}
 
-.full{width:100%;margin-top:10px}
+.secondary{
+  background:#f0e3e5;
+  color:var(--text);
+}
 
-.detailPhoto{
+.danger{
+  background:#fde4e8;
+  color:var(--red);
+}
+
+.photo-preview{
+  display:grid;
+  grid-template-columns:repeat(3,1fr);
+  gap:7px;
+  margin-top:8px;
+}
+
+.photo-preview img{
   width:100%;
-  max-height:440px;
+  aspect-ratio:1;
+  object-fit:cover;
+  border-radius:12px;
+}
+
+.checks{
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:8px;
+}
+
+.check{
+  background:#fff;
+  border:1px solid var(--line);
+  border-radius:13px;
+  padding:11px;
+  font-size:12px;
+}
+
+.check input{margin-right:5px}
+
+.detail-img{
+  width:100%;
+  max-height:480px;
   object-fit:cover;
   border-radius:20px;
 }
 
-.detailTitle{
+.gallery{
+  display:flex;
+  overflow:auto;
+  gap:7px;
+  margin-top:8px;
+}
+
+.gallery img{
+  width:68px;
+  height:68px;
+  object-fit:cover;
+  border-radius:11px;
+  border:2px solid transparent;
+}
+
+.detail-title{
   font-size:24px;
   font-weight:900;
   margin-top:14px;
 }
 
-.detailLine{
+.detail-price{
+  font-size:25px;
+  font-weight:900;
+  color:var(--pink-dark);
+  margin-top:5px;
+}
+
+.detail-row{
   padding:10px 0;
   border-bottom:1px solid var(--line);
   line-height:1.45;
+  font-size:14px;
 }
 
-.sellerBox{
+.seller-box{
+  margin-top:14px;
+  padding:14px;
   background:#fff;
   border:1px solid var(--line);
   border-radius:18px;
-  padding:14px;
-  margin-top:14px;
 }
 
-.profileHead{
+.profile-head{
   display:flex;
-  gap:12px;
   align-items:center;
-  margin-bottom:18px;
+  gap:12px;
+  margin-bottom:15px;
 }
 
-.avatar{
-  width:64px;
-  height:64px;
+.profile-avatar{
+  width:68px;
+  height:68px;
   border-radius:50%;
-  background:var(--soft);
+  object-fit:cover;
+  background:var(--pink-soft);
   display:grid;
   place-items:center;
   font-size:28px;
-  object-fit:cover;
 }
 
-.profileName{font-size:20px;font-weight:900}
-.username{color:var(--muted);margin-top:3px}
-.rating{color:var(--gold);margin-top:4px;font-size:13px}
+.profile-name{
+  font-size:20px;
+  font-weight:900;
+}
+
+.muted{color:var(--muted)}
+
+.stars{
+  color:var(--gold);
+  margin-top:4px;
+}
+
+.star-picker{
+  display:flex;
+  gap:3px;
+  margin:10px 0;
+}
+
+.star-btn{
+  background:none;
+  font-size:31px;
+  color:#d8c6cb;
+  padding:1px;
+}
+
+.star-btn.on{color:var(--gold)}
 
 .status{
   display:inline-block;
-  padding:5px 9px;
   margin-top:6px;
+  padding:5px 8px;
   border-radius:999px;
-  background:#eee0e5;
-  color:var(--pink2);
-  font-size:11px;
+  background:var(--pink-soft);
+  color:var(--pink-dark);
+  font-size:10px;
   font-weight:800;
+}
+
+.filters{
+  background:#fff;
+  padding:14px;
+  border-radius:18px;
+  border:1px solid var(--line);
 }
 
 .toast{
   display:none;
   position:fixed;
   z-index:500;
-  left:16px;right:16px;
-  bottom:100px;
-  background:#3c252e;
+  left:15px;
+  right:15px;
+  bottom:95px;
+  background:#39262d;
   color:#fff;
   padding:14px;
   border-radius:15px;
   text-align:center;
+  box-shadow:var(--shadow);
 }
+
 .toast.show{display:block}
 
-.starBox{display:flex;gap:3px;margin:10px 0}
-.star{
-  background:none;
-  padding:2px;
-  font-size:30px;
-  color:#d9c7cd;
-}
-.star.on{color:#d1a03f}
-
 @media(min-width:700px){
-  main{max-width:800px;margin:auto}
-  header>div{max-width:800px;margin:auto}
-  .sheet{max-width:700px;margin:auto}
+  .grid{grid-template-columns:repeat(3,1fr)}
 }
 </style>
 </head>
@@ -401,88 +587,134 @@ main{padding:15px}
 <body>
 
 <header>
-<div class="brand">
-  <div class="logo">🌸</div>
-  <div>
-    <h1>Baby & Mama Market</h1>
-    <div class="subtitle">Речі для малюків від мам 💕</div>
+<div class="head">
+  <div class="brand">
+    <div class="logo">🌸</div>
+    <div>
+      <div class="brand-title">Baby & Mama Market</div>
+      <div class="brand-sub">мамин маркет речей 💕</div>
+    </div>
   </div>
+  <button class="avatar-top" onclick="openMyProfile()">👩🏻</button>
 </div>
 </header>
 
 <main>
 
-<input id="search" class="search"
-placeholder="🔎 Пошук речі, розміру або міста">
+<div class="hero">
+  <h1>Дай речам<br>нову історію 🌸</h1>
+  <p>Купуй та продавай дитячі й мамині речі в Україні та Польщі.</p>
+</div>
 
-<button class="add" onclick="openSell()">＋ Додати оголошення</button>
+<div class="search-row">
+  <input id="search" class="search" placeholder="🔎 Що шукаємо?">
+  <button class="filter-btn" onclick="toggleFilters()">⚙️</button>
+</div>
 
-<div class="quickFilters">
-<select id="countryFilter" onchange="render()">
-<option value="">🌍 Усі країни</option>
-<option value="Україна">🇺🇦 Україна</option>
-<option value="Польща">🇵🇱 Польща</option>
-</select>
+<div id="filters" class="filters" style="display:none;margin-top:9px">
+  <div class="row">
+    <div class="field">
+      <label>Країна</label>
+      <select id="filterCountry" onchange="renderListings()">
+        <option value="">Усі</option>
+        <option value="Україна">🇺🇦 Україна</option>
+        <option value="Польща">🇵🇱 Польща</option>
+      </select>
+    </div>
 
-<select id="sort" onchange="render()">
-<option value="new">Нові спочатку</option>
-<option value="cheap">Ціна ↑</option>
-<option value="expensive">Ціна ↓</option>
-</select>
+    <div class="field">
+      <label>Сортування</label>
+      <select id="sort" onchange="renderListings()">
+        <option value="new">Нові спочатку</option>
+        <option value="cheap">Від дешевих</option>
+        <option value="expensive">Від дорогих</option>
+      </select>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="field">
+      <label>Ціна від</label>
+      <input id="minPrice" type="number" inputmode="numeric" onchange="renderListings()">
+    </div>
+    <div class="field">
+      <label>Ціна до</label>
+      <input id="maxPrice" type="number" inputmode="numeric" onchange="renderListings()">
+    </div>
+  </div>
 </div>
 
 <div class="categories">
-<button class="active" onclick="category('Усі',this)">Усі</button>
-<button onclick="category('Одяг',this)">Одяг</button>
-<button onclick="category('Взуття',this)">Взуття</button>
-<button onclick="category('Іграшки',this)">Іграшки</button>
-<button onclick="category('Аксесуари',this)">Аксесуари</button>
-<button onclick="category('Для мами',this)">Для мами</button>
-<button onclick="category('Інше',this)">Інше</button>
+  <button class="chip active" onclick="setCategory('Усі',this)">Усі</button>
+  <button class="chip" onclick="setCategory('Одяг',this)">👕 Одяг</button>
+  <button class="chip" onclick="setCategory('Взуття',this)">👟 Взуття</button>
+  <button class="chip" onclick="setCategory('Іграшки',this)">🧸 Іграшки</button>
+  <button class="chip" onclick="setCategory('Коляски та автокрісла',this)">🛒 Коляски</button>
+  <button class="chip" onclick="setCategory('Годування',this)">🍼 Годування</button>
+  <button class="chip" onclick="setCategory('Для мами',this)">🌷 Для мами</button>
+  <button class="chip" onclick="setCategory('Інше',this)">✨ Інше</button>
+</div>
+
+<div class="section-head">
+  <h2 id="pageTitle">Оголошення</h2>
+  <div id="count" class="count"></div>
 </div>
 
 <div id="products" class="grid">
-<div class="empty">Підключення 🌸</div>
+  <div class="loading">Завантажуємо маркет 🌸</div>
 </div>
 
 </main>
 
 <nav class="bottom">
-<button onclick="home()"><span>🏠</span>Головна</button>
-<button onclick="openSell()"><span>➕</span>Продати</button>
-<button onclick="myProfile()"><span>👤</span>Мій профіль</button>
-</nav>
+  <button class="nav active" id="navHome" onclick="showHome()">
+    <span>🏠</span>Головна
+  </button>
 
-<!-- SELL -->
+  <button class="nav" id="navFav" onclick="showFavorites()">
+    <span>♡</span>Обране
+  </button>
+
+  <button class="nav" onclick="openSell()">
+    <div class="sell-fab">＋</div>
+    Продати
+  </button>
+
+  <button class="nav" id="navProfile" onclick="openMyProfile()">
+    <span>👤</span>Профіль
+  </button>
+</nav>
 
 <div id="sellModal" class="modal">
 <div class="sheet">
-
 <button class="close" onclick="closeSell()">×</button>
-<h2>Нове оголошення 🌸</h2>
+<h2 id="formTitle">Нове оголошення 🌸</h2>
+
+<input type="hidden" id="editId">
 
 <div class="field">
 <label>Назва *</label>
 <input id="title" placeholder="Наприклад: Сукня Zara">
 </div>
 
-<div class="row">
 <div class="field">
-<label>Категорія</label>
-<select id="formCategory">
+<label>Категорія *</label>
+<select id="category">
 <option>Одяг</option>
 <option>Взуття</option>
 <option>Іграшки</option>
+<option>Коляски та автокрісла</option>
+<option>Годування</option>
 <option>Аксесуари</option>
 <option>Для мами</option>
 <option>Інше</option>
 </select>
 </div>
 
+<div class="row">
 <div class="field">
 <label>Розмір</label>
-<input id="size" placeholder="74">
-</div>
+<input id="size" placeholder="Наприклад: 74">
 </div>
 
 <div class="field">
@@ -490,20 +722,16 @@ placeholder="🔎 Пошук речі, розміру або міста">
 <select id="condition">
 <option>Нове</option>
 <option>Як нове</option>
-<option>Дуже хороший стан</option>
-<option>Хороший стан</option>
+<option>Дуже хороший</option>
+<option>Хороший</option>
 <option>Є нюанси</option>
 </select>
 </div>
-
-<div class="field">
-<label>Ціна *</label>
-<input id="price" type="number" min="0" inputmode="decimal" placeholder="300">
 </div>
 
 <div class="field">
 <label>Країна *</label>
-<select id="country" onchange="countryChanged()">
+<select id="country" onchange="updateCurrency()">
 <option value="">Оберіть країну</option>
 <option value="Україна">🇺🇦 Україна</option>
 <option value="Польща">🇵🇱 Польща</option>
@@ -512,51 +740,52 @@ placeholder="🔎 Пошук речі, розміру або міста">
 
 <div class="field">
 <label>Місто *</label>
-<select id="citySelect" onchange="cityChanged()" disabled>
-<option value="">Спочатку оберіть країну</option>
-</select>
+<input id="city" list="cityList" placeholder="Почніть вводити місто">
+<datalist id="cityList"></datalist>
 </div>
 
-<div id="customCityBox" class="field" style="display:none">
-<label>Вкажіть своє місто</label>
-<input id="customCity" placeholder="Назва міста">
+<div class="field">
+<label id="priceLabel">Ціна *</label>
+<input id="price" type="number" min="0" inputmode="decimal" placeholder="300">
 </div>
 
 <div class="field">
 <label>Telegram продавця *</label>
-<input id="telegram" placeholder="@username"
+<input id="sellerTelegram" placeholder="@username"
 autocomplete="off" autocapitalize="none">
 </div>
 
 <div class="field">
-<label>📸 Фото з галереї</label>
-<input id="photo" class="file" type="file"
-accept="image/jpeg,image/png,image/webp,image/heic,image/heif"
-onchange="preview(event)">
-<div id="preview" class="preview"></div>
+<label>Доставка</label>
+<div class="checks">
+<label class="check"><input type="checkbox" name="delivery" value="Нова пошта"> Нова пошта</label>
+<label class="check"><input type="checkbox" name="delivery" value="Укрпошта"> Укрпошта</label>
+<label class="check"><input type="checkbox" name="delivery" value="Meest"> Meest</label>
+<label class="check"><input type="checkbox" name="delivery" value="InPost"> InPost</label>
+<label class="check"><input type="checkbox" name="delivery" value="Paczkomat"> Paczkomat</label>
+<label class="check"><input type="checkbox" name="delivery" value="Особиста зустріч"> Особиста зустріч</label>
+</div>
+</div>
+
+<div class="field">
+<label>Фото, до 6 шт. 📸</label>
+<input id="photos" type="file" accept="image/*" multiple onchange="previewPhotos()">
+<div id="photoPreview" class="photo-preview"></div>
 </div>
 
 <div class="field">
 <label>Опис</label>
-<textarea id="description"
-placeholder="Стан речі, заміри, нюанси, доставка..."></textarea>
+<textarea id="description" placeholder="Опиши річ, заміри, нюанси..."></textarea>
 </div>
 
-<div class="actions">
+<button id="publishBtn" class="primary" onclick="saveListing()">Опублікувати 🌸</button>
 <button class="secondary" onclick="closeSell()">Скасувати</button>
-<button id="publish" class="primary" onclick="publish()">Опублікувати</button>
-</div>
-
 </div>
 </div>
-
-<!-- DETAILS -->
 
 <div id="detailModal" class="modal">
 <div id="detail" class="sheet"></div>
 </div>
-
-<!-- PROFILE -->
 
 <div id="profileModal" class="modal">
 <div id="profile" class="sheet"></div>
@@ -566,4 +795,1043 @@ placeholder="Стан речі, заміри, нюанси, доставка..."
 
 <script>
 const SUPABASE_URL="https://kotjqloictmzhqcresaq.supabase.co";
-const SUPABASE_KEY="eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImtvdGpxb
+const SUPABASE_KEY="eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImtvdGpxbG9pY3RtemhxY3Jlc2FxIiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODk5OTY3NTYsImV4cCI6MjEwNTU3Mjc1Nn0.EBHCCl9S3Q4HmCL5VkxV9aRscS0FI2wodDjCPeXskeI";
+
+const db=window.supabase.createClient(SUPABASE_URL,SUPABASE_KEY,{
+ auth:{
+   persistSession:true,
+   autoRefreshToken:true,
+   detectSessionInUrl:false
+ }
+});
+
+const tg=window.Telegram?.WebApp||null;
+
+try{
+ tg?.ready();
+ tg?.expand();
+}catch(e){}
+
+let me=null;
+let currentCategory="Усі";
+let favoritesOnly=false;
+let favorites=new Set();
+let ratingChoice=5;
+
+const UA_CITIES=[
+"Київ","Харків","Одеса","Дніпро","Львів","Запоріжжя",
+"Кривий Ріг","Миколаїв","Вінниця","Херсон","Полтава",
+"Чернігів","Черкаси","Суми","Житомир","Хмельницький",
+"Чернівці","Рівне","Кропивницький","Івано-Франківськ",
+"Тернопіль","Луцьк","Ужгород","Біла Церква","Кременчук",
+"Кам'янське","Бровари","Буча","Ірпінь","Мукачево",
+"Дрогобич","Стрий","Коломия","Ковель","Умань",
+"Кам'янець-Подільський","Бердичів","Ніжин","Прилуки",
+"Олександрія","Чорноморськ","Ізмаїл","Бориспіль",
+"Фастів","Обухів","Вишгород","Вишневе","Боярка",
+"Нововолинськ","Шептицький","Самбір","Трускавець",
+"Моршин","Яремче","Калуш","Надвірна","Долина",
+"Звягель","Коростень","Конотоп","Шостка","Охтирка",
+"Лубни","Миргород","Горішні Плавні","Сміла","Золотоноша",
+"Канів","Подільськ","Білгород-Дністровський","Південне"
+];
+
+const PL_CITIES=[
+"Варшава","Краків","Вроцлав","Лодзь","Познань","Гданськ",
+"Щецин","Люблін","Бидгощ","Білосток","Катовіце","Гдиня",
+"Ченстохова","Радом","Торунь","Сосновець","Кельце",
+"Жешув","Глівіце","Ольштин","Бєльсько-Бяла","Забже",
+"Битом","Зелена Гура","Рибник","Ополе","Тихи",
+"Гожув-Велькопольський","Ельблонг","Плоцьк","Валбжих",
+"Влоцлавек","Тарнув","Кошалін","Каліш","Легниця",
+"Грудзьондз","Слупськ","Явожно","Новий Сонч",
+"Єленя-Гура","Седльце","Мисловіце","Піла","Любін",
+"Іновроцлав","Острув-Велькопольський","Сувалки",
+"Гнезно","Пшемисль","Замосць","Хелм","Лешно"
+];
+
+const placeholder="data:image/svg+xml;charset=UTF-8,"+
+encodeURIComponent(`<svg xmlns="http://www.w3.org/2000/svg" width="700" height="700">
+<rect width="700" height="700" fill="#f6e6e7"/>
+<text x="350" y="320" text-anchor="middle" font-size="90">🌸</text>
+<text x="350" y="400" text-anchor="middle" font-family="Arial" font-size="32" fill="#a94e6c">Baby &amp; Mama</text>
+</svg>`);
+
+function esc(v){
+ return String(v??"")
+ .replaceAll("&","&amp;")
+ .replaceAll("<","&lt;")
+ .replaceAll(">","&gt;")
+ .replaceAll('"',"&quot;")
+ .replaceAll("'","&#039;");
+}
+
+function toast(text){
+ const el=document.getElementById("toast");
+ el.textContent=text;
+ el.classList.add("show");
+ clearTimeout(window.toastTimer);
+ window.toastTimer=setTimeout(()=>el.classList.remove("show"),2800);
+}
+
+function flag(c){
+ if(c==="Україна")return "🇺🇦";
+ if(c==="Польща")return "🇵🇱";
+ return "🌍";
+}
+
+function currencySymbol(currency,country){
+ if(currency==="PLN"||country==="Польща")return "zł";
+ return "грн";
+}
+
+function formatPrice(p){
+ return Number(p||0).toLocaleString("uk-UA");
+}
+
+function statusText(s){
+ if(s==="sold")return "Продано";
+ if(s==="reserved")return "Резерв";
+ return "Активне";
+}
+
+function tgUser(){
+ return tg?.initDataUnsafe?.user||null;
+}
+
+function getName(){
+ const u=tgUser();
+ if(!u)return "Мама";
+ return [u.first_name,u.last_name].filter(Boolean).join(" ")||"Мама";
+}
+
+async function init(){
+ try{
+   const {data,error}=await db.auth.getSession();
+   if(error)throw error;
+
+   if(data.session){
+     me=data.session.user;
+   }else{
+     const auth=await db.auth.signInAnonymously();
+     if(auth.error)throw auth.error;
+     me=auth.data.user;
+   }
+
+   await ensureProfile();
+   await loadFavorites();
+   await renderListings();
+
+ }catch(e){
+   console.error(e);
+   document.getElementById("products").innerHTML=
+   `<div class="empty">😔<br><b>Не вдалося відкрити маркет</b><br>${esc(e.message)}</div>`;
+ }
+}
+
+async function ensureProfile(){
+ const u=tgUser();
+
+ const {data:old}=await db
+ .from("profiles")
+ .select("*")
+ .eq("id",me.id)
+ .maybeSingle();
+
+ const telegram=u?.username ? "@"+u.username : (old?.username||"");
+
+ const {error}=await db.from("profiles").upsert({
+   id:me.id,
+   username:telegram,
+   display_name:old?.display_name||getName(),
+   avatar_url:old?.avatar_url||u?.photo_url||null,
+   country:old?.country||null,
+   city:old?.city||null
+ });
+
+ if(error)throw error;
+}
+
+async function loadFavorites(){
+ if(!me)return;
+ const {data,error}=await db
+ .from("favorites")
+ .select("listing_id")
+ .eq("user_id",me.id);
+
+ if(error){
+   console.error(error);
+   return;
+ }
+
+ favorites=new Set((data||[]).map(x=>String(x.listing_id)));
+}
+
+function setCategory(cat,button){
+ currentCategory=cat;
+ document.querySelectorAll(".chip").forEach(x=>x.classList.remove("active"));
+ button.classList.add("active");
+ renderListings();
+}
+
+function toggleFilters(){
+ const f=document.getElementById("filters");
+ f.style.display=f.style.display==="none"?"block":"none";
+}
+
+async function getListings(){
+ let q=db
+ .from("listings")
+ .select("*,profiles(id,username,display_name,avatar_url)")
+ .in("status",["active","reserved"]);
+
+ if(currentCategory!=="Усі"){
+   q=q.eq("category",currentCategory);
+ }
+
+ const sort=document.getElementById("sort").value;
+
+ if(sort==="cheap"){
+   q=q.order("price",{ascending:true});
+ }else if(sort==="expensive"){
+   q=q.order("price",{ascending:false});
+ }else{
+   q=q.order("created_at",{ascending:false});
+ }
+
+ const {data,error}=await q;
+ if(error)throw error;
+
+ const search=document.getElementById("search").value.trim().toLowerCase();
+ const country=document.getElementById("filterCountry").value;
+ const min=Number(document.getElementById("minPrice").value||0);
+ const maxRaw=document.getElementById("maxPrice").value;
+ const max=maxRaw===""?Infinity:Number(maxRaw);
+
+ return (data||[]).filter(p=>{
+   if(favoritesOnly&&!favorites.has(String(p.id)))return false;
+   if(country&&p.country!==country)return false;
+
+   const price=Number(p.price||0);
+   if(price<min||price>max)return false;
+
+   if(search){
+     const text=[
+       p.title,p.category,p.size,p.city,p.country,
+       p.condition,p.description
+     ].join(" ").toLowerCase();
+
+     if(!text.includes(search))return false;
+   }
+
+   return true;
+ });
+}
+
+async function renderListings(){
+ const box=document.getElementById("products");
+ box.innerHTML='<div class="loading">Завантажуємо 🌸</div>';
+
+ try{
+   const items=await getListings();
+
+   document.getElementById("pageTitle").textContent=
+   favoritesOnly?"Обране ❤️":"Оголошення";
+
+   document.getElementById("count").textContent=
+   `${items.length} шт.`;
+
+   if(!items.length){
+     box.innerHTML=favoritesOnly
+     ?'<div class="empty">♡<br><b>В обраному поки порожньо</b><br>Натискай сердечко на товарах, які сподобались.</div>'
+     :'<div class="empty">🌸<br><b>Нічого не знайдено</b><br>Спробуй змінити фільтри.</div>';
+     return;
+   }
+
+   box.innerHTML=items.map(p=>{
+     const seller=p.profiles||{};
+     const fav=favorites.has(String(p.id));
+
+     return `
+     <article class="card">
+       <div class="photo-box" onclick="openDetail('${p.id}')">
+         <img class="photo"
+         src="${esc(p.photo_url||placeholder)}"
+         onerror="this.onerror=null;this.src=placeholder">
+
+         <div class="badge">
+           ${flag(p.country)} ${esc(p.country||"")}
+         </div>
+
+         <button class="favorite"
+         onclick="event.stopPropagation();toggleFavorite('${p.id}')">
+           ${fav?"❤️":"🤍"}
+         </button>
+       </div>
+
+       <div class="card-body" onclick="openDetail('${p.id}')">
+         <div class="card-title">${esc(p.title)}</div>
+
+         <div class="price">
+           ${formatPrice(p.price)}
+           ${currencySymbol(p.currency,p.country)}
+         </div>
+
+         <div class="meta">
+           📍 ${esc(p.city||"Не вказано")}
+         </div>
+
+         <div class="meta">
+           📏 ${esc(p.size||"Не вказано")}
+           · ${esc(p.condition||"")}
+         </div>
+
+         ${p.status==="reserved"
+           ?'<div class="status">📌 Резерв</div>'
+           :''}
+
+         <div class="seller">
+           👩‍🍼 ${esc(seller.display_name||seller.username||"Продавець")}
+         </div>
+       </div>
+     </article>`;
+   }).join("");
+
+ }catch(e){
+   console.error(e);
+   box.innerHTML=
+   `<div class="empty">😔<br><b>Помилка завантаження</b><br>${esc(e.message)}</div>`;
+ }
+}
+
+async function toggleFavorite(id){
+ if(!me)return;
+
+ if(favorites.has(String(id))){
+   const {error}=await db
+   .from("favorites")
+   .delete()
+   .eq("user_id",me.id)
+   .eq("listing_id",id);
+
+   if(error){
+     toast(error.message);
+     return;
+   }
+
+   favorites.delete(String(id));
+ }else{
+   const {error}=await db
+   .from("favorites")
+   .insert({
+     user_id:me.id,
+     listing_id:Number(id)
+   });
+
+   if(error){
+     toast(error.message);
+     return;
+   }
+
+   favorites.add(String(id));
+ }
+
+ await renderListings();
+}
+
+function showHome(){
+ favoritesOnly=false;
+ setNav("navHome");
+ renderListings();
+ window.scrollTo({top:0,behavior:"smooth"});
+}
+
+function showFavorites(){
+ favoritesOnly=true;
+ setNav("navFav");
+ renderListings();
+ window.scrollTo({top:0,behavior:"smooth"});
+}
+
+function setNav(id){
+ document.querySelectorAll(".nav").forEach(x=>x.classList.remove("active"));
+ document.getElementById(id)?.classList.add("active");
+}
+
+document.getElementById("search").addEventListener("input",()=>{
+ clearTimeout(window.searchTimer);
+ window.searchTimer=setTimeout(renderListings,250);
+});
+
+function updateCurrency(){
+ const country=document.getElementById("country").value;
+ document.getElementById("priceLabel").textContent=
+ country==="Польща"?"Ціна, zł *":"Ціна, грн *";
+
+ const cities=country==="Польща"?PL_CITIES:UA_CITIES;
+ document.getElementById("cityList").innerHTML=
+ cities.map(x=>`<option value="${esc(x)}"></option>`).join("");
+}
+
+async function openSell(){
+ resetForm();
+
+ const {data:p}=await db
+ .from("profiles")
+ .select("username")
+ .eq("id",me.id)
+ .maybeSingle();
+
+ document.getElementById("sellerTelegram").value=p?.username||"";
+ document.getElementById("sellModal").classList.add("show");
+}
+
+function closeSell(){
+ document.getElementById("sellModal").classList.remove("show");
+}
+
+function resetForm(){
+ document.getElementById("formTitle").textContent="Нове оголошення 🌸";
+ document.getElementById("editId").value="";
+ document.getElementById("title").value="";
+ document.getElementById("category").value="Одяг";
+ document.getElementById("size").value="";
+ document.getElementById("condition").value="Як нове";
+ document.getElementById("country").value="";
+ document.getElementById("city").value="";
+ document.getElementById("price").value="";
+ document.getElementById("description").value="";
+ document.getElementById("photos").value="";
+ document.getElementById("photoPreview").innerHTML="";
+ document.querySelectorAll('input[name="delivery"]').forEach(x=>x.checked=false);
+ updateCurrency();
+ document.getElementById("publishBtn").textContent="Опублікувати 🌸";
+}
+
+function previewPhotos(){
+ const files=[...document.getElementById("photos").files].slice(0,6);
+ const box=document.getElementById("photoPreview");
+ box.innerHTML="";
+
+ files.forEach(file=>{
+   const img=document.createElement("img");
+   img.src=URL.createObjectURL(file);
+   box.appendChild(img);
+ });
+
+ if(document.getElementById("photos").files.length>6){
+   toast("Можна додати максимум 6 фото");
+ }
+}
+
+async function uploadPhoto(file){
+ const ext=(file.name.split(".").pop()||"jpg").toLowerCase();
+ const uid=crypto.randomUUID
+ ?crypto.randomUUID()
+ :Date.now()+"-"+Math.random().toString(16).slice(2);
+
+ const path=`${me.id}/${uid}.${ext}`;
+
+ const {error}=await db.storage
+ .from("listing-photos")
+ .upload(path,file,{
+   contentType:file.type||"image/jpeg",
+   upsert:false
+ });
+
+ if(error)throw error;
+
+ return db.storage
+ .from("listing-photos")
+ .getPublicUrl(path).data.publicUrl;
+}
+
+async function saveListing(){
+ const editId=document.getElementById("editId").value;
+ const title=document.getElementById("title").value.trim();
+ const category=document.getElementById("category").value;
+ const size=document.getElementById("size").value.trim();
+ const condition=document.getElementById("condition").value;
+ const country=document.getElementById("country").value;
+ const city=document.getElementById("city").value.trim();
+ const price=document.getElementById("price").value;
+ const description=document.getElementById("description").value.trim();
+
+ let username=document.getElementById("sellerTelegram").value.trim();
+
+ if(!title){toast("Напиши назву товару ❤️");return}
+ if(!country){toast("Оберіть країну 🌍");return}
+ if(!city){toast("Вкажи місто 📍");return}
+ if(price===""||Number(price)<0){toast("Вкажи правильну ціну 💰");return}
+ if(!username){toast("Вкажи Telegram продавця 💬");return}
+
+ username="@"+username.replace(/^@/,"");
+
+ const delivery=[...document.querySelectorAll('input[name="delivery"]:checked')]
+ .map(x=>x.value);
+
+ const files=[...document.getElementById("photos").files].slice(0,6);
+
+ if(!editId&&!files.length){
+   toast("Додай хоча б одне фото 📸");
+   return;
+ }
+
+ const btn=document.getElementById("publishBtn");
+ btn.disabled=true;
+ btn.textContent=editId?"Зберігаємо...":"Публікуємо...";
+
+ try{
+   const profileResult=await db
+   .from("profiles")
+   .update({
+     username,
+     country,
+     city
+   })
+   .eq("id",me.id);
+
+   if(profileResult.error)throw profileResult.error;
+
+   const payload={
+     title,
+     category,
+     size:size||"Не вказано",
+     condition,
+     country,
+     city,
+     price:Number(price),
+     currency:country==="Польща"?"PLN":"UAH",
+     delivery,
+     description,
+     updated_at:new Date().toISOString()
+   };
+
+   let listingId=editId;
+
+   if(editId){
+     const {error}=await db
+     .from("listings")
+     .update(payload)
+     .eq("id",editId)
+     .eq("seller_id",me.id);
+
+     if(error)throw error;
+   }else{
+     const {data,error}=await db
+     .from("listings")
+     .insert({
+       ...payload,
+       seller_id:me.id,
+       status:"active"
+     })
+     .select()
+     .single();
+
+     if(error)throw error;
+     listingId=data.id;
+   }
+
+   if(files.length){
+     const urls=[];
+
+     for(let i=0;i<files.length;i++){
+       const url=await uploadPhoto(files[i]);
+       urls.push(url);
+
+       const {error:imageError}=await db
+       .from("listing_images")
+       .insert({
+         listing_id:Number(listingId),
+         image_url:url,
+         position:i
+       });
+
+       if(imageError)throw imageError;
+     }
+
+     if(urls[0]){
+       const {error:coverError}=await db
+       .from("listings")
+       .update({photo_url:urls[0]})
+       .eq("id",listingId)
+       .eq("seller_id",me.id);
+
+       if(coverError)throw coverError;
+     }
+   }
+
+   closeSell();
+   await renderListings();
+   toast(editId?"Оголошення оновлено 🌸":"Оголошення опубліковано 🌸");
+
+ }catch(e){
+   console.error(e);
+   toast("Помилка: "+e.message);
+ }finally{
+   btn.disabled=false;
+   btn.textContent=editId?"Зберегти зміни":"Опублікувати 🌸";
+ }
+}
+
+async function openDetail(id){
+ try{
+   const {data:p,error}=await db
+   .from("listings")
+   .select("*,profiles(id,username,display_name,avatar_url)")
+   .eq("id",id)
+   .single();
+
+   if(error)throw error;
+
+   const {data:images}=await db
+   .from("listing_images")
+   .select("*")
+   .eq("listing_id",id)
+   .order("position",{ascending:true});
+
+   db.rpc("increment_listing_views",{
+     listing_id_input:Number(id)
+   }).then(()=>{}).catch(()=>{});
+
+   const seller=p.profiles||{};
+   const mine=p.seller_id===me.id;
+
+   const allImages=(images||[]).map(x=>x.image_url);
+
+   if(!allImages.length&&p.photo_url){
+     allImages.push(p.photo_url);
+   }
+
+   const cover=allImages[0]||placeholder;
+
+   document.getElementById("detail").innerHTML=`
+   <button class="close" onclick="closeDetail()">×</button>
+
+   <img id="detailMainImage"
+   class="detail-img"
+   src="${esc(cover)}"
+   onerror="this.onerror=null;this.src=placeholder">
+
+   ${allImages.length>1?`
+   <div class="gallery">
+     ${allImages.map(url=>`
+       <img src="${esc(url)}"
+       onclick="document.getElementById('detailMainImage').src=this.src">
+     `).join("")}
+   </div>`:""}
+
+   <div class="detail-title">${esc(p.title)}</div>
+
+   <div class="detail-price">
+     ${formatPrice(p.price)}
+     ${currencySymbol(p.currency,p.country)}
+   </div>
+
+   ${p.status==="reserved"
+     ?'<div class="status">📌 Зарезервовано</div>'
+     :''}
+
+   <div class="detail-row">
+     ${flag(p.country)} <b>${esc(p.country||"Країна не вказана")}</b>
+     · 📍 ${esc(p.city||"")}
+   </div>
+
+   <div class="detail-row">
+     📏 <b>Розмір:</b> ${esc(p.size||"Не вказано")}
+   </div>
+
+   <div class="detail-row">
+     ✨ <b>Стан:</b> ${esc(p.condition||"Не вказано")}
+   </div>
+
+   <div class="detail-row">
+     📦 <b>Доставка:</b>
+     ${p.delivery?.length?esc(p.delivery.join(", ")):"Не вказано"}
+   </div>
+
+   <div class="detail-row">
+     📝 ${esc(p.description||"Опис не додано")}
+   </div>
+
+   <div class="detail-row">
+     👁 ${Number(p.views||0)} переглядів
+   </div>
+
+   <div class="seller-box"
+   onclick="openProfile('${p.seller_id}')">
+     <b>👩‍🍼 ${esc(seller.display_name||"Продавець")}</b>
+     <div class="muted">${esc(seller.username||"")}</div>
+     <div style="margin-top:5px">Відкрити профіль ›</div>
+   </div>
+
+   ${!mine&&seller.username?`
+     <button class="primary"
+     onclick="openTelegram('${esc(seller.username)}')">
+       💬 Написати продавцю
+     </button>
+   `:""}
+
+   <button class="secondary"
+   onclick="toggleFavorite('${p.id}')">
+     ${favorites.has(String(p.id))?"❤️ Прибрати з обраного":"🤍 Додати в обране"}
+   </button>
+
+   ${mine?`
+     <button class="primary" onclick="editListing('${p.id}')">
+       ✏️ Редагувати
+     </button>
+
+     ${p.status!=="reserved"?`
+       <button class="secondary"
+       onclick="changeStatus('${p.id}','reserved')">
+         📌 Поставити в резерв
+       </button>`:`
+       <button class="secondary"
+       onclick="changeStatus('${p.id}','active')">
+         ↩️ Зняти резерв
+       </button>`}
+
+     ${p.status!=="sold"?`
+       <button class="secondary"
+       onclick="changeStatus('${p.id}','sold')">
+         ✅ Позначити проданим
+       </button>`:""}
+
+     <button class="danger"
+     onclick="deleteListing('${p.id}')">
+       🗑 Видалити оголошення
+     </button>
+   `:""}
+   `;
+
+   document.getElementById("detailModal").classList.add("show");
+
+ }catch(e){
+   toast("Не вдалося відкрити оголошення");
+ }
+}
+
+function closeDetail(){
+ document.getElementById("detailModal").classList.remove("show");
+}
+
+function openTelegram(username){
+ const clean=String(username||"").replace(/^@/,"").trim();
+
+ if(!clean){
+   toast("Telegram продавця не вказано");
+   return;
+ }
+
+ const url="https://t.me/"+clean;
+
+ try{
+   if(tg?.openTelegramLink){
+     tg.openTelegramLink(url);
+   }else{
+     window.open(url,"_blank");
+   }
+ }catch(e){
+   window.location.href=url;
+ }
+}
+
+async function changeStatus(id,status){
+ const {error}=await db
+ .from("listings")
+ .update({
+   status,
+   updated_at:new Date().toISOString()
+ })
+ .eq("id",id)
+ .eq("seller_id",me.id);
+
+ if(error){
+   toast(error.message);
+   return;
+ }
+
+ closeDetail();
+ await renderListings();
+ toast(status==="sold"
+ ? "Позначено як продано ✅"
+ : status==="reserved"
+ ? "Товар у резерві 📌"
+ : "Резерв знято 🌸");
+}
+
+async function deleteListing(id){
+ if(!confirm("Точно видалити це оголошення?"))return;
+
+ const {error}=await db
+ .from("listings")
+ .delete()
+ .eq("id",id)
+ .eq("seller_id",me.id);
+
+ if(error){
+   toast(error.message);
+   return;
+ }
+
+ closeDetail();
+ await renderListings();
+ toast("Оголошення видалено 🗑");
+}
+
+async function editListing(id){
+ const {data:p,error}=await db
+ .from("listings")
+ .select("*")
+ .eq("id",id)
+ .single();
+
+ if(error||p.seller_id!==me.id){
+   toast("Не вдалося відкрити редагування");
+   return;
+ }
+
+ closeDetail();
+
+ document.getElementById("editId").value=p.id;
+ document.getElementById("formTitle").textContent="Редагувати оголошення ✏️";
+ document.getElementById("title").value=p.title||"";
+ document.getElementById("category").value=p.category||"Одяг";
+ document.getElementById("size").value=p.size||"";
+ document.getElementById("condition").value=p.condition||"Як нове";
+ document.getElementById("country").value=p.country||"";
+ document.getElementById("city").value=p.city||"";
+ document.getElementById("price").value=p.price||"";
+ document.getElementById("description").value=p.description||"";
+
+ updateCurrency();
+
+ document.querySelectorAll('input[name="delivery"]').forEach(x=>{
+   x.checked=(p.delivery||[]).includes(x.value);
+ });
+
+ const {data:profile}=await db
+ .from("profiles")
+ .select("username")
+ .eq("id",me.id)
+ .maybeSingle();
+
+ document.getElementById("sellerTelegram").value=
+ profile?.username||"";
+
+ document.getElementById("publishBtn").textContent="Зберегти зміни";
+ document.getElementById("sellModal").classList.add("show");
+}
+
+async function getRating(sellerId){
+ const {data,error}=await db
+ .from("ratings")
+ .select("rating")
+ .eq("seller_id",sellerId);
+
+ if(error||!data?.length)return {avg:0,count:0};
+
+ const values=data.map(x=>Number(x.rating));
+ return {
+   avg:values.reduce((a,b)=>a+b,0)/values.length,
+   count:values.length
+ };
+}
+
+function stars(avg){
+ if(!avg)return "☆☆☆☆☆";
+ const n=Math.round(avg);
+ return "★".repeat(n)+"☆".repeat(5-n);
+}
+
+async function openProfile(id){
+ try{
+   const {data:seller,error}=await db
+   .from("profiles")
+   .select("*")
+   .eq("id",id)
+   .single();
+
+   if(error)throw error;
+
+   const mine=id===me.id;
+
+   let query=db
+   .from("listings")
+   .select("*")
+   .eq("seller_id",id)
+   .order("created_at",{ascending:false});
+
+   if(!mine){
+     query=query.in("status",["active","reserved"]);
+   }
+
+   const {data:listings}=await query;
+   const rating=await getRating(id);
+
+   let myRating=null;
+
+   if(!mine){
+     const {data:r}=await db
+     .from("ratings")
+     .select("rating,review")
+     .eq("seller_id",id)
+     .eq("reviewer_id",me.id)
+     .maybeSingle();
+
+     myRating=r?.rating||null;
+   }
+
+   ratingChoice=myRating||5;
+
+   document.getElementById("profile").innerHTML=`
+   <button class="close" onclick="closeProfile()">×</button>
+
+   <div class="profile-head">
+     ${seller.avatar_url
+       ?`<img class="profile-avatar" src="${esc(seller.avatar_url)}">`
+       :'<div class="profile-avatar">👩🏻</div>'}
+
+     <div>
+       <div class="profile-name">
+         ${esc(seller.display_name||"Мама")}
+       </div>
+
+       <div class="muted">
+         ${esc(seller.username||"")}
+       </div>
+
+       <div class="stars">
+         ${stars(rating.avg)}
+         ${rating.count?`${rating.avg.toFixed(1)} · ${rating.count}`:"Без оцінок"}
+       </div>
+     </div>
+   </div>
+
+   ${seller.country||seller.city?`
+   <div class="seller-box">
+     ${flag(seller.country)}
+     ${esc(seller.country||"")}
+     ${seller.city?" · 📍 "+esc(seller.city):""}
+   </div>`:""}
+
+   ${!mine?`
+   <div class="seller-box">
+     <b>Оцінити продавця</b>
+
+     <div id="starPicker" class="star-picker">
+       ${[1,2,3,4,5].map(n=>`
+       <button class="star-btn ${n<=ratingChoice?"on":""}"
+       onclick="chooseRating(${n})">★</button>
+       `).join("")}
+     </div>
+
+     <button class="secondary"
+     onclick="saveRating('${id}')">
+       ⭐ Зберегти оцінку
+     </button>
+   </div>
+   `:""}
+
+   ${!mine&&seller.username?`
+   <button class="primary"
+   onclick="openTelegram('${esc(seller.username)}')">
+     💬 Написати в Telegram
+   </button>
+   `:""}
+
+   <h3>${mine?"Мої оголошення":"Оголошення продавця"}</h3>
+
+   <div class="grid">
+   ${(listings||[]).map(p=>`
+     <article class="card" onclick="openDetail('${p.id}')">
+       <div class="photo-box">
+         <img class="photo"
+         src="${esc(p.photo_url||placeholder)}"
+         onerror="this.onerror=null;this.src=placeholder">
+       </div>
+
+       <div class="card-body">
+         <div class="card-title">${esc(p.title)}</div>
+         <div class="price">
+           ${formatPrice(p.price)}
+           ${currencySymbol(p.currency,p.country)}
+         </div>
+         <div class="meta">📍 ${esc(p.city||"")}</div>
+
+         ${mine?`
+         <div class="status">${statusText(p.status)}</div>
+         `:""}
+       </div>
+     </article>
+   `).join("")||'<div class="empty">Поки немає оголошень 🌸</div>'}
+   </div>
+   `;
+
+   document.getElementById("profileModal").classList.add("show");
+
+ }catch(e){
+   toast("Не вдалося відкрити профіль");
+ }
+}
+
+function closeProfile(){
+ document.getElementById("profileModal").classList.remove("show");
+}
+
+async function openMyProfile(){
+ if(!me){
+   toast("Профіль ще завантажується");
+   return;
+ }
+ setNav("navProfile");
+ await openProfile(me.id);
+}
+
+function chooseRating(n){
+ ratingChoice=n;
+
+ document.querySelectorAll("#starPicker .star-btn")
+ .forEach((x,i)=>{
+   x.classList.toggle("on",i<n);
+ });
+}
+
+async function saveRating(sellerId){
+ if(sellerId===me.id)return;
+
+ const {error}=await db
+ .from("ratings")
+ .upsert({
+   seller_id:sellerId,
+   reviewer_id:me.id,
+   rating:ratingChoice
+ },{
+   onConflict:"seller_id,reviewer_id"
+ });
+
+ if(error){
+   toast(error.message);
+   return;
+ }
+
+ toast("Оцінку збережено ⭐");
+ await openProfile(sellerId);
+}
+
+["sellModal","detailModal","profileModal"].forEach(id=>{
+ const modal=document.getElementById(id);
+
+ modal.addEventListener("click",e=>{
+   if(e.target===modal){
+     modal.classList.remove("show");
+   }
+ });
+});
+
+init();
+</script>
+
+</body>
+</html>
