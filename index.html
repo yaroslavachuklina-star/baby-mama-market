@@ -619,6 +619,17 @@ main{
 </div>
 
 <div class="field">
+<label>Telegram продавця *</label>
+<input
+  id="sellerTelegram"
+  type="text"
+  placeholder="@username"
+  autocomplete="off"
+  autocapitalize="none"
+>
+</div>
+
+<div class="field">
 <label>📸 Фото з галереї</label>
 <input
   id="photo"
@@ -1248,6 +1259,30 @@ async function uploadPhoto(file){
 }
 
 async function publishListing(){
+  
+    const sellerTelegram = document
+    .getElementById("sellerTelegram")
+    .value
+    .trim();
+
+  if(!sellerTelegram){
+    toast("Вкажи Telegram продавця ❤️");
+    return;
+  }
+
+  const cleanTelegram = sellerTelegram.startsWith("@")
+    ? sellerTelegram
+    : "@" + sellerTelegram;
+
+  const { error: profileError } = await db
+    .from("profiles")
+    .update({ username: cleanTelegram })
+    .eq("id", me.id);
+
+  if(profileError){
+    toast("Не вдалося зберегти Telegram: " + profileError.message);
+    return;
+  }
 
   const title =
     document.getElementById("title").value.trim();
@@ -1359,6 +1394,7 @@ function resetForm(){
   document.getElementById("photo").value = "";
   document.getElementById("preview").innerHTML = "";
 }
+
 
 /* ==============================
    DETAIL
